@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "About us";
+const identity = {
+  firstName: "Colourfully.Digital",
+  country: "Canada",
+  occupation: "Community connector",
+  hobbies: [ "YouTubing", "Coding", "Teaching" ],
+};
+const socials = {
+  twitter:   "https://twitter.com/colourful.digital",
+  github:    "https://github.com/colourful-digital",
+  facebook:  "https://www.facebook.com/colourful.digital",
+  instagram: "https://www.instagram.com/colourful.digital",
+  youtube:   "https://www.youtube.com/channel/colourfully.digital",
+  linkedin:  "https://www.linkedin.com/company/colourfully.digital",
+};
+const skills = ["HTML", "CSS", "JavaScript", "Python", "React", "Node.js"];
+const happy = true;
+const finished = true;
+const goal = 3;
+---
+<BaseLayout pageTitle={ pageTitle }>
+  <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+  
+  <p>Here are a few facts about us:</p>
+  <ul>
+    <li>Our name is { identity.firstName }.</li>
+    <li>We are located in { identity.country } and we work as a { identity.occupation }.</li>
+    { identity.hobbies.length >= 2 &&
+        <li>Two of our hobbies are: { identity.hobbies[ 0 ] } and { identity.hobbies[ 1 ] }</li>
+      }
+  </ul>
+  <p>Our skills are:</p>
+  <ul>
+    { skills.map( ( skill ) => <li>{ skill }</li> ) }
+  </ul>
+  { happy && <p>I am happy to be learning Astro!</p> }
+  
+  { finished && <p>I finished this tutorial!</p> }
+  
+  { goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p> }
+  <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
+</BaseLayout>

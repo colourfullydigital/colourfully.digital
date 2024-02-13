@@ -1,155 +1,139 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "Home page";
 ---
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={ Astro.generator } />
-		<title>Colourfully.Digital - Welcome</title>
-	</head>
-	<body>
-		<h1>Colourfully.Digital</h1>
-		<section>
-			<h2>Empowering Black Youth Through STEM Education!</h2>
-			<p>Welcome to Colourfully Digital, where we provide a vibrant platform for children of colour to explore and excel in STEM activities. Join us on this exciting journey of learning, discovery, and empowerment.</p>
-			<a href="#discover">Discover</a>
-		</section>
-		<section>
-			<h2 id="features">Features</h2>
-			<ul>
-				<li>
-					<img src="" alt="">
-					<h3>Discover Our Platform's Offerings</h3>
-					<p>Explore the various features that make Colourfully Digital unique.</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<h3>Engage with Our Vibrant Community</h3>
-					<p>Connect with like-minded parents and share your experiences.</p>
-				</li>
-				<li>
-					<img src="" alt="">
-					<h3>Stay Updated with Exciting Events</h3>
-					<p>Never miss out on our upcoming STEM events.</p>
-				</li>
-			</ul>
-		</section>
-		<section>
-			<h2 id="mentors">Our mentors</h2>
-			<ul>
-				<li>
-					<img src="" alt="">
-						<h3>Henri</h3>
-						<p class="position">Lead instructor</p>
-						<p>Python specialist</p>
-					</img>
-				</li>
-				<li>
-					<img src="" alt="">
-						<h3>Frank</h3>
-						<p class="position">Lead instructor</p>
-						<p>HTML, CSS, JS specialist</p>
-					</img>
-				</li>
-				<li>
-					<img src="" alt="">
-						<h3>Carine</h3>
-						<p class="position">Mentor</p>
-						<p>Alt-Clique-Girls</p>
-					</img>
-				</li>
-			</ul>
-		</section>
-		<section>
-			<h2 id="discover">Upcoming workshops</h2>
-			<details>
-				<summary>February 17<span> Cohort 13-17</span></summary>
-				<section class="content">
-					<div>
-						<h3>Black Boys Code: Operation BRICK</h3>
-						<p>Lorem ipsum dolor sit amet, consectere adipiscing elit. Feugiat feugiat congue viverra facilisis.</p>
-						<button type="button">Register now</button>
-					</div>
-					<div>
-						<h4>About the course</h4>
-						<dl>
-							<dt>Level:</dt>
-							<dd>Beginner</dd>
-							<dt>Duration:</dt>
-							<dd>2.5 hours</dd>
-							<dt>Audience:</dt>
-							<dd>Boys and Girls</dd>
-							<dt>Delivery:</dt>
-							<dd>Online</dd>
-							<dt>Price:</dt>
-							<dd>Free</dd>
-							<dt>Access from:</dt>
-							<dd>Computer, tablet, mobile</dd>
-						</dl>
-					</div>
-				</section>
-			</details>
-			<details>
-				<summary>February 24<span> Cohort 8-12</span></summary>
-				<section class="content">
-					<div>
-						<h3>Black Boys Code: Guardian of the web</h3>
-						<p>Lorem ipsum dolor sit amet, consectere adipiscing elit. Feugiat feugiat congue viverra facilisis.</p>
-						<button type="button">Register now</button>
-					</div>
-					<div>
-						<h4>About the course</h4>
-						<dl>
-							<dt>Level:</dt>
-							<dd>Beginner</dd>
-							<dt>Duration:</dt>
-							<dd>5 hours</dd>
-							<dt>Audience:</dt>
-							<dd>Boys</dd>
-							<dt>Delivery:</dt>
-							<dd>In person</dd>
-							<dt>Price:</dt>
-							<dd>Free</dd>
-							<dt>Optional:</dt>
-							<dd>Computer, tablet, mobile</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="content">
-					<div>
-						<h3>Alt.Clique.Girl</h3>
-						<p>Lorem ipsum dolor sit amet, consectere adipiscing elit. Feugiat feugiat congue viverra facilisis.</p>
-						<button type="button">Register now</button>
-					</div>
-					<div>
-						<h4>About the course</h4>
-						<dl>
-							<dt>Level:</dt>
-							<dd>Beginner</dd>
-							<dt>Duration:</dt>
-							<dd>5 hours</dd>
-							<dt>Audience:</dt>
-							<dd>Girls</dd>
-							<dt>Delivery:</dt>
-							<dd>In person</dd>
-							<dt>Price:</dt>
-							<dd>Free</dd>
-							<dt>Optional:</dt>
-							<dd>Computer, tablet, mobile</dd>
-						</dl>
-					</div>
-				</section>
-			</details>
-		</section>
-		<section>
-<!-- 			<h2 id="newsletter" class="sr-only">Newsletter</h2>
-			<form action="" method="post" id="newsletter-form">
-				<label for="email">Stay updated with our newsletter</label>
-				<input type="email" id="email" name="email" required>
-				<button type="submit">Subscribe</button>
-		</section> -->
-		<script async src="https://eocampaign1.com/form/4563dd40-c871-11ee-9a2b-2b14b9d396fe.js" data-form="4563dd40-c871-11ee-9a2b-2b14b9d396fe"></script>
-	</body>
-</html>
+<BaseLayout pageTitle={ pageTitle }>
+	<section>
+		<h2>Empowering Black Youth Through STEM Education!</h2>
+		<p>Welcome to Colourfully Digital, where we provide a vibrant platform for children of colour to explore and excel in STEM activities. Join us on this exciting journey of learning, discovery, and empowerment.</p>
+		<a href="#discover">Discover</a>
+	</section>
+	<section>
+		<h2 id="features">Features</h2>
+		<ul>
+			<li>
+				<img src="" alt="">
+				<h3>Discover Our Platform's Offerings</h3>
+				<p>Explore the various features that make Colourfully Digital unique.</p>
+			</li>
+			<li>
+				<img src="" alt="">
+				<h3>Engage with Our Vibrant Community</h3>
+				<p>Connect with like-minded parents and share your experiences.</p>
+			</li>
+			<li>
+				<img src="" alt="">
+				<h3>Stay Updated with Exciting Events</h3>
+				<p>Never miss out on our upcoming STEM events.</p>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2 id="mentors">Our mentors</h2>
+		<ul>
+			<li>
+				<img src="" alt="">
+					<h3>Henri</h3>
+					<p class="position">Lead instructor</p>
+					<p>Python specialist</p>
+				</img>
+			</li>
+			<li>
+				<img src="" alt="">
+					<h3>Frank</h3>
+					<p class="position">Lead instructor</p>
+					<p>HTML, CSS, JS specialist</p>
+				</img>
+			</li>
+			<li>
+				<img src="" alt="">
+					<h3>Carine</h3>
+					<p class="position">Mentor</p>
+					<p>Alt-Clique-Girls</p>
+				</img>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2 id="discover">Upcoming workshops</h2>
+		<details>
+			<summary>February 17<span> Cohort 13-17</span></summary>
+			<section class="content">
+				<div>
+					<h3>Black Boys Code: Operation BRICK</h3>
+					<p>Lorem ipsum dolor sit amet, consectere adipiscing elit. Feugiat feugiat congue viverra facilisis.</p>
+					<button type="button">Register now</button>
+				</div>
+				<div>
+					<h4>About the course</h4>
+					<dl>
+						<dt>Level:</dt>
+						<dd>Beginner</dd>
+						<dt>Duration:</dt>
+						<dd>2.5 hours</dd>
+						<dt>Audience:</dt>
+						<dd>Boys and Girls</dd>
+						<dt>Delivery:</dt>
+						<dd>Online</dd>
+						<dt>Price:</dt>
+						<dd>Free</dd>
+						<dt>Access from:</dt>
+						<dd>Computer, tablet, mobile</dd>
+					</dl>
+				</div>
+			</section>
+		</details>
+		<details>
+			<summary>February 24<span> Cohort 8-12</span></summary>
+			<section class="content">
+				<div>
+					<h3>Black Boys Code: Guardian of the web</h3>
+					<p>Lorem ipsum dolor sit amet, consectere adipiscing elit. Feugiat feugiat congue viverra facilisis.</p>
+					<button type="button">Register now</button>
+				</div>
+				<div>
+					<h4>About the course</h4>
+					<dl>
+						<dt>Level:</dt>
+						<dd>Beginner</dd>
+						<dt>Duration:</dt>
+						<dd>5 hours</dd>
+						<dt>Audience:</dt>
+						<dd>Boys</dd>
+						<dt>Delivery:</dt>
+						<dd>In person</dd>
+						<dt>Price:</dt>
+						<dd>Free</dd>
+						<dt>Optional:</dt>
+						<dd>Computer, tablet, mobile</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="content">
+				<div>
+					<h3>Alt.Clique.Girl</h3>
+					<p>Lorem ipsum dolor sit amet, consectere adipiscing elit. Feugiat feugiat congue viverra facilisis.</p>
+					<button type="button">Register now</button>
+				</div>
+				<div>
+					<h4>About the course</h4>
+					<dl>
+						<dt>Level:</dt>
+						<dd>Beginner</dd>
+						<dt>Duration:</dt>
+						<dd>5 hours</dd>
+						<dt>Audience:</dt>
+						<dd>Girls</dd>
+						<dt>Delivery:</dt>
+						<dd>In person</dd>
+						<dt>Price:</dt>
+						<dd>Free</dd>
+						<dt>Optional:</dt>
+						<dd>Computer, tablet, mobile</dd>
+					</dl>
+				</div>
+			</section>
+		</details>
+	</section>
+	<script async src="https://eocampaign1.com/form/4563dd40-c871-11ee-9a2b-2b14b9d396fe.js" data-form="4563dd40-c871-11ee-9a2b-2b14b9d396fe"></script>
+</BaseLayout>
