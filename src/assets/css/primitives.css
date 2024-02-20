@@ -1,0 +1,228 @@
+.image,
+image-l {
+	display: block;
+}
+
+.image:after,
+image-l:after {
+	content: "";
+	display: block;
+	border: var( --border-thin ) solid var( --color-dark );
+	background-image: paint( image-cross );
+}
+
+text-l .text {
+	display: block;
+}
+
+.text span,
+text-l span {
+	display: inline-block;
+	color: transparent;
+	position: relative;
+	pointer-events: none;
+}
+
+.text span:before,
+text-l span:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc( 50% - var( --border-thin ) / 2 );
+	bottom: calc( 50% - var( --border-thin ) / 2 );
+	background-color: var( --color-dark );
+}
+
+.words,
+words-l {
+	font-family: var( --font-plain );
+}
+
+.shrink-grow,
+shrink-grow {
+	display: block;
+	margin-left: 0;
+	margin-right: 0;
+	max-width: none;
+	overflow: hidden;
+	border-width: var( --border-thin );
+	padding: var( --space-m );
+}
+
+.switcher,
+switcher-l {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.switcher > *,
+switcher-l > * {
+	flex-basis: calc( ( var( --measure ) - 100%) * 999 );
+	flex-grow: 1;
+}
+
+.center,
+center-l {
+	display: block;
+	box-sizing: content-box;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var( --measure );
+}
+
+.cover,
+cover-l {
+	margin: var( --space-s );
+	min-height: calc( 100vh - var( --space-l ));
+	padding: var( --space-0 );
+}
+
+.cover,
+.stack,
+cover-l,
+stack-l {
+	display: flex;
+	flex-direction: column;
+}
+
+.stack,
+stack-l {
+	justify-content: flex-start;
+}
+
+.stack > * + *,
+stack-l > * + * {
+	margin-top: var( --space-m );
+}
+
+.box,
+box-l {
+	display: block;
+	padding: var( --space-m );
+	border-width: var( --border-thin );
+	outline: var( --border-thin ) solid transparent;
+	outline-offset: calc( var( --border-thin ) * -1 );
+}
+
+.grid,
+grid-l {
+	display: grid;
+	grid-gap: var( --space-m );
+	align-content: start;
+	grid-template-columns: 100%;
+}
+
+.sidebar,
+sidebar-l {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.sidebar > :first-child,
+sidebar-l > :first-child {
+	flex-grow: 1;
+	/* flex-basis: calc( var( --measure ) / 2 ); */
+}
+
+/*.sidebar > :last-child,
+sidebar-l > :last-child {
+	flex-basis: 0;
+	flex-grow: 999;
+	min-width: 50%;
+}*/
+
+.cluster,
+cluster-l {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.frame,
+frame-l {
+	--n: 9;
+	--d: 16;
+	padding-bottom: calc( var( --n ) / var( --d ) * 100%);
+	position: relative;
+}
+
+.frame > *,
+frame-l > * {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.frame > img,
+.frame > video,
+frame-l > img,
+frame-l > video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.reel,
+reel-l {
+	display: flex;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-color: var( --color-light ) var( --color-brand-secondary );
+}
+
+.reel > *,
+reel-l > * {
+	flex: 0 0 var( --item-width );
+}
+
+.reel > img,
+reel-l > img {
+	height: 100%;
+	flex-basis: auto;
+	width: auto;
+}
+
+.reel::-webkit-scrollbar,
+reel-l::-webkit-scrollbar {
+	height: 1rem;
+}
+
+.reel::-webkit-scrollbar-thumb,
+.reel::-webkit-scrollbar-track,
+reel-l::-webkit-scrollbar-thumb,
+reel-l::-webkit-scrollbar-track {
+	background-color: var( --color-dark );
+}
+
+.reel::-webkit-scrollbar-thumb,
+reel-l::-webkit-scrollbar-thumb {
+	background-image: linear-gradient( var( --color-dark ), var( --color-dark ) 0.25rem, var( --color-light ) 0, var( --color-light ) 0.75rem, var( --color-brand-secondary ) 0 );
+}
+
+.imposter,
+imposter-l {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50%);
+}
+
+.icon svg,
+icon-l svg {
+	height: 0.75em;
+	height: 1cap;
+	width: 0.75em;
+	width: 1cap;
+}
+
+.text-center {
+	text-align: center;
+}

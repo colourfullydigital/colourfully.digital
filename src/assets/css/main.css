@@ -1,0 +1,242 @@
+@import url( normalize.css );
+@import url( variables.css );
+@import url( primitives.css );
+
+body {
+	background-color: var( --color-brand-primary );
+	/* border: var( --border-thin ) solid var( --color-dark ); */
+	font-family: var( --font-plain );
+	height: calc( 100vh - var( --space-l ) * 2 );
+	margin: var( --space-l );
+}
+
+main > * {
+	border: var( --border-thin ) solid transparent;
+}
+
+main > * > * {
+	margin-left: var( --space-s );
+}
+
+footer {
+	margin-inline: var( --space-m );
+}
+
+header {
+	border: var( --border-thin ) solid var( --color-dark );
+	margin: var( --space-m );
+}
+
+header section {
+	background-color: var( --color-brand-primary );
+	border: var( --border-thin ) solid var( --color-dark );
+	margin: var( --space-xs );
+	padding: var( --space-xs );
+}
+
+ul {
+	margin: var( --space-3xs ) var( --space-l )
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: var( --line-height-small );
+	font-family: var( --font-special );
+	font-weight: 700;
+	/* hyphens: auto; */
+}
+
+.h1,
+h1 {
+	font-size: var( --step-5 );
+}
+
+.h2,
+h2 {
+	font-size: var( --step-3 );
+}
+
+.h3,
+h3 {
+	font-size: var( --step-2 );
+}
+
+.h4,
+h4 {
+	font-size: var( --step-1 );
+}
+
+
+.cover > main {
+	margin-block: 0 auto;
+}
+
+.cover > footer {
+	margin-block-end: var( --space-s );
+}
+
+:focus {
+	outline: var( --border-thin ) solid var( --color-brand-quinary );
+	outline-offset: var( --border-thin );
+}
+
+[ tabindex="-1" ]:focus {
+	outline: none;
+}
+
+.cta,
+button {
+	font-size: inherit;
+	font-weight: 700;
+	display: inline-block;
+	cursor: pointer;
+	font-family: var( --font-special );
+	color: var( --color-light );
+	background-color: var( --color-brand-secondary );
+	padding: var( --space-xs ) var( --space-l );
+	border-width: var( --border-thin );
+}
+
+.cta {
+	border-color: transparent;
+	color: var( --color-light );
+}
+a.cta {
+	text-decoration: none;
+}
+
+.cta--big {
+	display: block;
+	font-size: var( --step-2 );
+	text-align: center;
+	text-decoration: none;
+}
+
+.cta--big span {
+	text-decoration: underline;
+}
+
+[ href="#main" ] {
+	display: inline-block;
+	padding: var( --space-xs );
+	color: var( --color-light );
+	background-color: var( --color-brand-secondary );
+	position: absolute;
+	top: -10rem;
+}
+
+[ href="#main" ]:focus {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	outline: none;
+}
+
+.bg-white {
+	background-color: var( --color-light );
+}
+
+.bg-green {
+	background-color: var( --color-brand-tertiary );
+}
+
+.bg-orange {
+	background-color: var( --color-brand-quaternary );
+}
+
+.vert {
+	border-left: var( --border-thinnest ) solid var( --color-dark );
+	border-right: var( --border-thinnest ) solid var( --color-dark );
+}
+
+.hori {
+	border-top: var( --border-thinnest ) solid var( --color-dark );
+	border-bottom: var( --border-thinnest ) solid var( --color-dark );
+}
+
+th,
+td {
+	padding-inline: var( --space-s );
+	white-space: nowrap;
+}
+
+.page1 table {
+	border-collapse: collapse;
+	max-width: max-content;
+	overflow: auto;
+	table-layout: fixed;
+	width: calc( 100% - var( --space-m ) );
+	white-space: nowrap;
+}
+
+.page1 td {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.page1 td:nth-child( 2 ),
+.page1 td:last-child {
+	width: auto;
+}
+
+.page1 table code {
+	white-space: nowrap;
+}
+
+.page1 td,
+.page1 th {
+	border-width: var( --border-thin );
+	padding: var( --space-xs );
+	text-align: left;
+}
+
+.page1 td:first-child > span,
+.page1 tr:first-child td + td {
+	background-color: var( --color-brand-secondary );
+	color: white;
+	font-size: var( --step-0 );
+	white-space: nowrap;
+}
+
+.page1 tr :first-child {
+	padding-left: 0;
+}
+
+.page1 td:first-child > span {
+	padding: var( --space-xs ) var( --space-s );
+}
+
+.page1 tbody td:first-child span {
+	border-radius: var( --space-s );
+}
+
+.page1 tbody td:nth-child( 2 ) {
+	border-radius: var( --space-s ) 0 0 var( --space-s );
+}
+
+.page1 tbody td:last-child {
+	border-radius: 0 var( --space-s ) var( --space-s ) 0;
+}
+
+.page1 table ul {
+	margin: 0;
+}
+
+.page1 table ul li {
+	list-style-type: none;
+	margin-right: var( --space-3xs );
+}
+
+.challenge-5 td {
+	font-size: calc( var( --step-4 ) * 1.5 );
+	height: calc( ( var( --step-4) * 1.8 ) * 1.5 );
+	text-align: center;
+	width: calc( ( var( --step-4) * 1.8 ) * 1.5 );
+}
+
+.challenge-5 table {
+	margin: var( --space-3xs) auto;
+}
+
