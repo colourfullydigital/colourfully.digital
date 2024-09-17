@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en" data-theme="light">
+  <head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colourfully Digital - Diversity and Inclusion in STEM</title>
@@ -32,6 +32,11 @@
     <meta property="twitter:title" content="Colourfully Digital - Diversity and Inclusion in STEM">
     <meta property="twitter:description" content="Empowering BIPOC youth and supporting parents in building a future in technology.">
     <meta property="twitter:image" content="https://www.colourfully.digital/twitter-image.jpg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.green.min.css">
+    <link rel="stylesheet" href="main.css">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T9JNTGCLF9"></script>
     <script>
@@ -42,16 +47,26 @@
       gtag('config', 'G-T9JNTGCLF9');
     </script>
   </head>
-  <body>
-    <header className="flex justify-between items-center p-4 border-b">
-      <img src="logo.png" alt=""  width="32" height="32"/>
-      <a href="/" class="text-2xl font-bold text-primary">Colourfully Digital</a>
-      <button type="button" disabled>Sign In</button>
+  <body class="cover-l center-l">
+    <header>
+      <nav>
+        <a href="/" class="logo">
+          <img src="logo.png" alt="" height="32" width="32"/>
+          Colourfully Digital
+        </a>
+        <ul>
+          <li>
+            <button type="button" disabled>Sign In</button>
+          </li>
+        </ul>
+      </nav>
     </header>
-    <main class="container mx-auto px-4 py-12">
-      <h1 class="text-4xl font-bold leading-tight lg:text-5xl">Creating Opportunities for Diversity and Inclusion in STEM</h1>
-      <p class="text-lg text-muted-foreground">Colourfully Digital is dedicated to empowering BIPOC youth and supporting parents in building a future in technology.</p>
-      <section class="lg:flex lg:items-center lg:space-x-12">
+    <main>
+      <hgroup>
+        <h1>Creating Opportunities for Diversity and Equity in STEM</h1>
+        <p>Colourfully Digital is dedicated to empowering BIPOC youth and supporting parents in building a future in technology.</p>
+      </hgroup>
+      <section>
         <h2>Partners</h2>
         <ul>
           <li><a href="https://www.blackboyscode.com">Black Boys Code</a></li>
@@ -63,15 +78,13 @@
           <li><a href="https://studio2020.art">Studio 20/20</a></li>
         </ul>
       </section>
-      <section class="max-w-md mx-auto bg-muted p-6 rounded-lg space-y-4">
-        <h2 class="text-2xl font-semibold text-center">Subscribe to our newsletter</h2>
-        <iframe src="https://colourfullydigital.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
-        <!-- <form class="space-y-4" netlify id="newsletter">
-          <input type="email" placeholder="Enter your email" aria-label="Email address" />
-          <button type="submit" class="w-full">Subscribe</button>
-        </form> -->
+      <section>
+        <h2>Subscribe to our newsletter</h2>
+        <iframe class="center-l" src="https://colourfullydigital.substack.com/embed" width="480" height="150" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
       </section>
     </main>
-    <footer class="border-t p-4 text-center text-sm text-muted-foreground">© 2024 Colourfully Digital. All rights reserved.</footer>
+    <footer class="center-l">
+      <p class="center-l">2024 Colourfully Digital. All rights reserved.</p>
+    </footer>
   </body>
 </html>
