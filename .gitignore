@@ -78,6 +78,22 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+**/.env
+**/.env*
+**/*.cer
+**/*.crt
+**/*.key
+**/*.log
+**/*.p12
+**/*.pem
+**/*.secret
+**/*.secrets
+**/*.tfvars
+**/*keys*
+**/id_rsa
+**/id_rsa.pub
+.aws/credentials
+.aws/config
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
