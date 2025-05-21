@@ -1,5 +1,8 @@
 # Colourfully Digital
 
+[![CI](https://github.com/your-org/colourfully-digital/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/colourfully-digital/actions/workflows/ci.yml)
+[![CD](https://github.com/your-org/colourfully-digital/actions/workflows/cd.yml/badge.svg)](https://github.com/your-org/colourfully-digital/actions/workflows/cd.yml)
+
 This is a monorepo containing the Colourfully Digital website and CMS.
 
 ## What's inside?
@@ -96,3 +99,10 @@ This project uses Git for version control. Make sure to:
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
+
+## Deployments
+
+- Production: [https://colourfully.digital](https://colourfully.digital)
+- Staging: [https://staging.colourfully.digital](https://staging.colourfully.digital)
+- CMS Production: [https://cms.colourfully.digital](https://cms.colourfully.digital)
+- CMS Staging: [https://staging-cms.colourfully.digital](https://staging-cms.colourfully.digital)
