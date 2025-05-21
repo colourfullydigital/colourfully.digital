@@ -1,0 +1,21 @@
+{
+  "name": "@colourfully-digital/shared",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "eslint-config-custom": "workspace:*",
+    "tsup": "^6.1.3",
+    "typescript": "^5.0.4",
+    "typescript-config": "workspace:*"
+  }
+}
