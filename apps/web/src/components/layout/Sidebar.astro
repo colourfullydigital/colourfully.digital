@@ -1,0 +1,66 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  side?: 'left' | 'right';
+  sideWidth?: string;
+  contentMin?: string;
+  space?: string;
+}
+
+const { 
+  as: Element = 'div',
+  class: className = '',
+  side = 'left',
+  sideWidth = '15rem',
+  contentMin = '50%',
+  space = 'var(--space-l)'
+} = Astro.props;
+---
+
+<Element class:list={[
+  'sidebar',
+  `side-${side}`,
+  className
+]} style={{
+  '--sidebar-width': sideWidth,
+  '--content-min': contentMin,
+  '--sidebar-space': space
+}}>
+  <slot />
+</Element>
+
+<style>
+  .sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sidebar-space);
+  }
+
+  .sidebar > :first-child {
+    flex-basis: var(--sidebar-width);
+    flex-grow: 1;
+  }
+
+  .sidebar > :last-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--content-min);
+  }
+
+  /* Side variations */
+  .side-right {
+    flex-direction: row-reverse;
+  }
+
+  /* Responsive behavior */
+  @media (max-width: 640px) {
+    .sidebar {
+      flex-direction: column;
+    }
+    
+    .sidebar > :last-child {
+      min-inline-size: 100%;
+    }
+  }
+</style>

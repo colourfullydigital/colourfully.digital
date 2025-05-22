@@ -1,0 +1,54 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  threshold?: string;
+  space?: string;
+  limit?: number;
+}
+
+const { 
+  as: Element = 'div',
+  class: className = '',
+  threshold = '40rem',
+  space = 'var(--space-l)',
+  limit = 4
+} = Astro.props;
+---
+
+<Element class:list={[
+  'switcher',
+  className
+]} style={{
+  '--threshold': threshold,
+  '--switcher-space': space,
+  '--limit': limit
+}}>
+  <slot />
+</Element>
+
+<style>
+  .switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--switcher-space);
+  }
+
+  .switcher > * {
+    flex-grow: 1;
+    flex-basis: calc((var(--threshold) - 100%) * 999);
+  }
+
+  /* Limit child width */
+  .switcher > :nth-last-child(n + var(--limit)),
+  .switcher > :nth-last-child(n + var(--limit)) ~ * {
+    flex-basis: 100%;
+  }
+
+  /* Mobile behavior */
+  @media (max-width: 640px) {
+    .switcher > * {
+      flex-basis: 100%;
+    }
+  }
+</style>

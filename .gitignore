@@ -119,4 +119,8 @@ out
 .yarn/install-state.gz
 .pnp.*
 
+# Turbo cache
 .turbo/
+
+# IDE files
+.vscode/*

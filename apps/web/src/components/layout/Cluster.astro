@@ -1,0 +1,58 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  align?: 'start' | 'center' | 'end';
+  justify?: 'start' | 'center' | 'end' | 'between';
+  space?: string;
+}
+
+const { 
+  as: Element = 'div',
+  class: className = '',
+  align = 'center',
+  justify = 'start',
+  space = 'var(--space-xs)'
+} = Astro.props;
+---
+
+<Element class:list={[
+  'cluster',
+  `align-${align}`,
+  `justify-${justify}`,
+  className
+]} style={{
+  '--cluster-space': space
+}}>
+  <div class="cluster-inner">
+    <slot />
+  </div>
+</Element>
+
+<style>
+  .cluster {
+    --gap: var(--cluster-space);
+    overflow: hidden;
+  }
+
+  .cluster-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    margin: calc(var(--gap) * -0.5);
+  }
+
+  .cluster-inner > * {
+    margin: calc(var(--gap) * 0.5);
+  }
+
+  /* Alignment utilities */
+  .align-start { align-items: flex-start; }
+  .align-center { align-items: center; }
+  .align-end { align-items: flex-end; }
+
+  .justify-start { justify-content: flex-start; }
+  .justify-center { justify-content: center; }
+  .justify-end { justify-content: flex-end; }
+  .justify-between { justify-content: space-between; }
+</style>

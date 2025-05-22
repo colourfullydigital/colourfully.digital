@@ -1,0 +1,29 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  noPadding?: boolean;
+}
+
+const { 
+  as: Element = 'div',
+  class: className = '',
+  noPadding = false 
+} = Astro.props;
+---
+
+<Element class:list={[
+  'mx-auto w-full',
+  !noPadding && 'px-4 sm:px-6 lg:px-8',
+  'max-w-[var(--max-container)]',
+  className
+]}>
+  <slot />
+</Element>
+
+<style>
+  /* Container defaults from design system */
+  :root {
+    --max-container: 77.5rem; /* 1240px */
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  cols?: number | string;
+  gap?: string;
+}
+
+const { 
+  as: Element = 'div',
+  class: className = '',
+  cols = 12,
+  gap = 'var(--grid-gutter)'
+} = Astro.props;
+---
+
+<Element class:list={[
+  'grid',
+  className
+]} style={{
+  gap,
+  gridTemplateColumns: typeof cols === 'number' 
+    ? `repeat(${cols}, minmax(0, 1fr))` 
+    : cols
+}}>
+  <slot />
+</Element>
+
+<style>
+  .grid {
+    display: grid;
+  }
+  
+  /* Responsive grid patterns */
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

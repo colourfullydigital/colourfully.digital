@@ -1,0 +1,41 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  space?: string;
+  recursive?: boolean;
+}
+
+const { 
+  as: Element = 'div',
+  class: className = '',
+  space = 'var(--space-m)',
+  recursive = false
+} = Astro.props;
+---
+
+<Element class:list={[
+  'stack',
+  recursive && 'stack-recursive',
+  className
+]} style={{
+  '--stack-space': space
+}}>
+  <slot />
+</Element>
+
+<style>
+  .stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .stack > * + * {
+    margin-block-start: var(--stack-space);
+  }
+
+  .stack-recursive * + * {
+    margin-block-start: var(--stack-space);
+  }
+</style>
