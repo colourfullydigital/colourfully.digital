@@ -49,6 +49,7 @@ web_modules/
 dist/
 .vercel/
 .netlify/
+.astro/
 
 # TypeScript cache
 *.tsbuildinfo
