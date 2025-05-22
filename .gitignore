@@ -48,6 +48,7 @@ web_modules/
 # Build output
 dist/
 .vercel/
+.netlify/
 
 # TypeScript cache
 *.tsbuildinfo
@@ -116,3 +117,5 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+.turbo/

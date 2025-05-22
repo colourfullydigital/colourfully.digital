@@ -1,0 +1,29 @@
+---
+import { storyblokEditable, useStoryblokApi } from '@storyblok/astro';
+
+// Initialize the Storyblok client
+const storyblokApi = useStoryblokApi();
+
+// Get the home story content
+const { data } = await storyblokApi.get('cdn/stories/home', {
+  version: import.meta.env.DEV ? 'draft' : 'published',
+});
+
+const story = data.story;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Colourfully.Digital CMS</title>
+  </head>
+  <body>
+    <div {...storyblokEditable(story)}>
+      <h1>Welcome to the CMS</h1>
+      <p>This is the Astro-based CMS with Storyblok integration.</p>
+    </div>
+  </body>
+</html>

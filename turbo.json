@@ -5,10 +5,10 @@
   "remoteCache": {
     "enabled": true
   },
-  "pipeline": {
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": ["dist/**"]
     },
     "lint": {
       "outputs": []
