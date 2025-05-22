@@ -302,26 +302,85 @@ Our design system follows WCAG 2.1 AA guidelines:
 - Semantic HTML is used throughout
 - ARIA attributes are implemented where necessary
 
-## Usage with Tailwind CSS
+## Usage with Tailwind CSS v4
 
-Our design tokens are mapped to Tailwind CSS custom properties. Example configuration:
+Our design system is implemented with Tailwind CSS v4, which uses a new approach compared to previous versions:
+
+### Configuration Structure
 
 ```js
-module.exports = {
+/** @type {import('@tailwindcss/postcss').Config} */
+export default {
   theme: {
     extend: {
+      borderWidth: {
+        'brutalist': '8px',
+      },
       colors: {
-        green: 'var(--color-green)',
-        orange: 'var(--color-orange)',
+        // Primary Colors
+        'brand-green': 'var(--color-green)',
+        'brand-orange': 'var(--color-orange)',
+        'brand-yellow': 'var(--color-yellow)',
+        'brand-blue': 'var(--color-blue)',
         // ... other colors
       },
-      spacing: {
-        1: 'var(--space-1)',
-        2: 'var(--space-2)',
-        // ... other spacing values
+      boxShadow: {
+        'brutalist-sm': 'var(--shadow-sm)',
+        'brutalist-md': 'var(--shadow-md)',
+        'brutalist-lg': 'var(--shadow-lg)',
+      },
+      borderRadius: {
+        'brutalist-sm': 'var(--radius-sm)',
+        'brutalist-md': 'var(--radius-md)',
+        'brutalist-lg': 'var(--radius-lg)',
       },
       // ... other theme extensions
     },
-  },
+  }
 }
+```
+
+### Tailwind v4 CSS Implementation
+
+```css
+/* Instead of @tailwind directives, we use import */
+@import "tailwindcss";
+
+/* Custom components using @layer */
+@layer components {
+  .button {
+    height: 3rem;
+    padding: var(--space-4) var(--space-6);
+    border: var(--border-width-thick) var(--color-black);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    /* More styles... */
+  }
+  
+  /* Other components... */
+}
+```
+
+### Example Usage in HTML/Astro Templates
+
+```html
+<!-- Using utility classes -->
+<div class="bg-brand-green border-brutalist rounded-brutalist-md shadow-brutalist-sm">
+  Utility-based styling
+</div>
+
+<!-- Using component classes -->
+<button class="button button-primary">
+  Component-based styling
+</button>
+```
+
+### Key Differences with Tailwind v4
+
+1. **Import-based approach**: Instead of `@tailwind` directives, we use `@import "tailwindcss"`
+2. **Vite Integration**: Uses `@tailwindcss/vite` plugin in Astro config
+3. **PostCSS Setup**: Uses `@tailwindcss/postcss` in PostCSS config
+4. **CSS Layers**: Component styles are defined in `@layer components`
+
+For a complete guide on our Tailwind v4 implementation, refer to the project documentation.
 ```

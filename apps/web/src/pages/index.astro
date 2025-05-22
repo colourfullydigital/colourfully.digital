@@ -4,11 +4,69 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Welcome to Colourfully Digital">
   <main class="max-w-4xl mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-4">
-      Welcome to Colourfully Digital
-    </h1>
-    <p class="text-lg">
-      Your development environment is now set up with Astro.js and Tailwind CSS!
-    </p>
+    <div class="test-section mb-8">
+      <h1 class="text-4xl font-bold mb-4">
+        Welcome to Colourfully Digital
+      </h1>
+      <p class="text-lg mb-6">
+        Your development environment is now set up with Astro.js and Tailwind CSS v4!
+      </p>
+    </div>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Neo-Brutalist Components</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Button showcase -->
+        <div class="brutalist-box">
+          <h3 class="text-xl font-bold mb-3">Buttons</h3>
+          <div class="flex flex-wrap gap-4">
+            <button class="button">Default Button</button>
+            <button class="button button-primary">Primary</button>
+            <button class="button button-secondary">Secondary</button>
+            <button class="button button-accent">Accent</button>
+          </div>
+        </div>
+
+        <!-- Card showcase -->
+        <div class="card">
+          <h3 class="text-xl font-bold mb-3">Card Component</h3>
+          <p>This is a sample card with neo-brutalist styling. Hover to see the effect.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Brand Colors</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="p-6 bg-brand-green border-brutalist rounded-brutalist-md shadow-brutalist-sm">Green</div>
+        <div class="p-6 bg-brand-orange border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Orange</div>
+        <div class="p-6 bg-brand-yellow border-brutalist rounded-brutalist-md shadow-brutalist-sm">Yellow</div>
+        <div class="p-6 bg-brand-blue border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Blue</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Tailwind Utilities</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 bg-gray-100 rounded-md">
+          <h3 class="text-xl font-bold mb-3">Typography</h3>
+          <p class="text-xs mb-1">Extra Small (xs)</p>
+          <p class="text-sm mb-1">Small (sm)</p>
+          <p class="text-base mb-1">Base</p>
+          <p class="text-lg mb-1">Large (lg)</p>
+          <p class="text-xl mb-1">Extra Large (xl)</p>
+          <p class="text-2xl mb-1">2XL</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-md">
+          <h3 class="text-xl font-bold mb-3">Spacing</h3>
+          <div class="flex gap-2 flex-wrap">
+            <div class="p-1 bg-brand-blue-light border">p-1</div>
+            <div class="p-2 bg-brand-blue-light border">p-2</div>
+            <div class="p-4 bg-brand-blue-light border">p-4</div>
+            <div class="p-6 bg-brand-blue-light border">p-6</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>
