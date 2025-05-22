@@ -1,3 +1,129 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* Base styles */
+  html {
+    @apply text-text-primary bg-background;
+  }
+
+  html.dark {
+    @apply text-text-on-dark bg-black;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Button Components */
+  .btn {
+    @apply inline-flex items-center justify-center h-12 px-6 
+           font-bold transition-transform duration-200 
+           border-brutalist rounded-md;
+  }
+
+  .btn-primary {
+    @apply btn bg-green text-text-on-primary border-black shadow-sm 
+           hover:-translate-y-1 hover:shadow-md 
+           active:translate-y-0 active:shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-black border-black shadow-sm 
+           hover:bg-surface hover:-translate-y-1 hover:shadow-md 
+           active:bg-surface-variant active:translate-y-0 active:shadow-sm;
+  }
+
+  .btn-text {
+    @apply h-10 px-4 font-bold text-black underline 
+           hover:no-underline hover:bg-surface 
+           active:bg-surface-variant;
+  }
+
+  .btn-orange { @apply btn-primary bg-orange; }
+  .btn-yellow { @apply btn-primary bg-yellow text-black; }
+  .btn-blue { @apply btn-primary bg-blue; }
+
+  /* Card Components */
+  .card {
+    @apply bg-white border-thick border-black rounded-md p-6 shadow-sm 
+           transition-all duration-200
+           dark:bg-black dark:border-white dark:text-white;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-md;
+  }
+
+  /* Typography */
+  .heading-1 {
+    @apply text-6xl font-black leading-tight;
+  }
+
+  .heading-2 {
+    @apply text-5xl font-black leading-tight;
+  }
+
+  .heading-3 {
+    @apply text-4xl font-black leading-snug;
+  }
+
+  .heading-4 {
+    @apply text-3xl font-black leading-snug;
+  }
+
+  .heading-5 {
+    @apply text-2xl font-bold leading-normal;
+  }
+
+  .heading-6 {
+    @apply text-xl font-bold leading-normal;
+  }
+
+  .body-lg {
+    @apply text-lg font-regular leading-relaxed;
+  }
+
+  .body {
+    @apply text-base font-regular leading-relaxed;
+  }
+
+  .body-sm {
+    @apply text-sm font-regular leading-normal;
+  }
+
+  .caption {
+    @apply text-xs font-medium leading-normal;
+  }
+
+  .overline {
+    @apply text-xs font-bold uppercase tracking-widest leading-normal;
+  }
+
+  .link {
+    @apply text-base font-medium underline leading-normal;
+  }
+
+  .code {
+    @apply text-sm font-regular font-mono leading-normal;
+  }
+}
+
+@layer utilities {
+  /* Layout utilities */
+  .container-padding {
+    @apply px-4 sm:px-10;
+  }
+
+  .section-spacing {
+    @apply py-8 sm:py-16;
+  }
+
+  /* Neo-brutalist focus styles */
+  .focus-brutalist {
+    @apply focus:outline-none focus:ring-4 focus:ring-black dark:focus:ring-white;
+  }
+}
