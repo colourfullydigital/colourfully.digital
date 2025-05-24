@@ -1,0 +1,119 @@
+---
+interface Props {
+  variant?: 'default' | 'primary' | 'secondary' | 'accent';
+  className?: string;
+  interactive?: boolean;
+  href?: string;
+  ariaLabel?: string;
+}
+
+const { 
+  variant = 'default',
+  className = '',
+  interactive = false,
+  href,
+  ariaLabel,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : interactive ? 'button' : 'div';
+
+// Each variant sets both background and text color for proper contrast
+const variantClasses = {
+  default: 'bg-[var(--color-white)] text-[#111827]',
+  primary: 'bg-[var(--color-green)] text-[#111827]',
+  secondary: 'bg-[var(--color-blue-dark)] text-white',
+  accent: 'bg-[var(--color-orange-dark)] text-white'
+};
+
+const baseClasses = `
+  card
+  relative
+  p-6
+  border-[var(--border-width-thick)]
+  border-[var(--color-black)]
+  rounded-[var(--radius-md)]
+  shadow-[var(--shadow-sm)]
+  transition-transform
+  duration-[var(--animation-fast)]
+  ease-[var(--ease-out)]
+  overflow-hidden
+`;
+
+const interactiveClasses = interactive || href ? `
+  cursor-pointer
+  hover:transform
+  hover:-translate-y-2
+  hover:shadow-brutalist-md
+  focus:outline-none
+  focus-visible:ring-4
+  focus-visible:ring-brand-blue
+  focus-visible:ring-opacity-50
+` : '';
+
+const classes = `
+  ${baseClasses}
+  ${variantClasses[variant]}
+  ${interactiveClasses}
+  ${className}
+`.trim();
+---
+
+<Tag 
+  class={classes}
+  href={href}
+  aria-label={ariaLabel}
+  {...(interactive && !href ? { type: 'button', role: 'button' } : {})}
+  {...rest}
+>
+  <slot />
+  {interactive && <div class="card-overlay" />}
+</Tag>
+
+<style>
+  .card {
+    isolation: isolate;
+    display: block;
+    text-decoration: none;
+  }
+
+  .card-overlay {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-md);
+    opacity: 0;
+    transition: opacity var(--animation-fast) var(--ease-out);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  /* Ensure text maintains contrast in all states */
+  .card:hover {
+    text-decoration: none;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Improved focus styles */
+  .card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-md), 0 0 0 4px var(--color-blue-dark);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+    
+    .card-overlay {
+      transition: none;
+    }
+  }
+</style>

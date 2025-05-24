@@ -24,6 +24,9 @@ export default {
         'brand-yellow-dark': 'var(--color-yellow-dark)',
         'brand-blue-light': 'var(--color-blue-light)',
         'brand-blue-dark': 'var(--color-blue-dark)',
+        
+        // Text Colors
+        'on-dark': 'var(--color-text-on-dark)',
       },
       boxShadow: {
         'brutalist-sm': 'var(--shadow-sm)',

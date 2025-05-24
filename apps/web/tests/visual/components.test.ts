@@ -53,6 +53,34 @@ test.describe('Design System Components', () => {
         await page.hover('.card-featured');
         await expect(page.locator('.card-featured')).toHaveScreenshot(`card-featured-hover-${theme}.png`);
       });
+
+      test(`card variants - ${theme} mode`, async ({ page }) => {
+        await page.evaluate((t) => document.documentElement.setAttribute('data-theme', t), theme);
+        
+        // Default card
+        await expect(page.locator('.card:not([variant])')).toHaveScreenshot(`card-default-${theme}.png`);
+        await page.hover('.card:not([variant])');
+        await expect(page.locator('.card:not([variant])')).toHaveScreenshot(`card-default-hover-${theme}.png`);
+        
+        // Primary card
+        await expect(page.locator('.card[variant="primary"]')).toHaveScreenshot(`card-primary-${theme}.png`);
+        await page.hover('.card[variant="primary"]');
+        await expect(page.locator('.card[variant="primary"]')).toHaveScreenshot(`card-primary-hover-${theme}.png`);
+        
+        // Secondary card
+        await expect(page.locator('.card[variant="secondary"]')).toHaveScreenshot(`card-secondary-${theme}.png`);
+        await page.hover('.card[variant="secondary"]');
+        await expect(page.locator('.card[variant="secondary"]')).toHaveScreenshot(`card-secondary-hover-${theme}.png`);
+        
+        // Accent card
+        await expect(page.locator('.card[variant="accent"]')).toHaveScreenshot(`card-accent-${theme}.png`);
+        await page.hover('.card[variant="accent"]');
+        await expect(page.locator('.card[variant="accent"]')).toHaveScreenshot(`card-accent-hover-${theme}.png`);
+        
+        // Interactive card focus state
+        await page.keyboard.press('Tab'); // Focus first interactive card
+        await expect(page.locator('.card[interactive]:focus-visible')).toHaveScreenshot(`card-interactive-focus-${theme}.png`);
+      });
     }
   });
 

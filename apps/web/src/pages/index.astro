@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import Card from '../components/Card.astro';
 ---
 
 <Layout title="Welcome to Colourfully Digital">
@@ -31,10 +32,28 @@ import Hero from '../components/Hero.astro';
           </div>
         </div>
 
-        <!-- Card showcase -->
-        <div class="card">
-          <h3 class="text-xl font-bold mb-3">Card Component</h3>
-          <p>This is a sample card with neo-brutalist styling. Hover to see the effect.</p>
+        <!-- Card Components -->
+        <div class="space-y-6">
+          <h3 class="text-xl font-bold mb-3">Card Components</h3>
+          <Card>
+            <h4 class="font-bold mb-2">Default Card</h4>
+            <p>A neo-brutalist card component with hover effects.</p>
+          </Card>
+          
+          <Card variant="primary" interactive href="#" ariaLabel="Learn more about our services">
+            <h4 class="font-bold mb-2">Interactive Primary Card</h4>
+            <p>Click or tap to learn more about our services.</p>
+          </Card>
+          
+          <Card variant="secondary">
+            <h4 class="font-bold mb-2">Secondary Card</h4>
+            <p>Great for highlighting important content.</p>
+          </Card>
+          
+          <Card variant="accent" interactive>
+            <h4 class="font-bold mb-2">Accent Card</h4>
+            <p>Perfect for calls to action and important notices.</p>
+          </Card>
         </div>
       </div>
     </section>
