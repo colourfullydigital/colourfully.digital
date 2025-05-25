@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import Card from '../../components/Card.astro';
+import { createTranslator } from '../../i18n';
+import content from '../../i18n/content.json';
+import nav from '../../i18n/nav.json';
+
+const locale = 'en';
+const t = createTranslator({ ...content, ...nav }, locale);
+---
+
+<Layout title="Welcome to Colourfully Digital">
+  <Hero
+    title={t('welcome.title')}
+    subtitle={t('welcome.subtitle')}
+    primaryCTA={{
+      text: t('nav.startProject'),
+      href: "/en/contact"
+    }}
+    secondaryCTA={{
+      text: t('nav.viewWork'),
+      href: "/en/portfolio"
+    }}
+  />
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">{t('components.title')}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Button showcase -->
+      <div class="brutalist-box">
+        <h3 class="text-xl font-bold mb-3">{t('components.buttons')}</h3>
+        <div class="flex flex-wrap gap-4">
+          <button class="button">{t('components.defaultButton')}</button>
+          <button class="button button-primary">{t('components.primary')}</button>
+          <button class="button button-secondary">{t('components.secondary')}</button>
+          <button class="button button-accent">{t('components.accent')}</button>
+        </div>
+      </div>
+
+      <!-- Card Components -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-bold mb-3">Card Components</h3>
+        <Card>
+          <h4 class="font-bold mb-2">Default Card</h4>
+          <p>A neo-brutalist card component with hover effects.</p>
+        </Card>
+        
+        <Card variant="primary" interactive href="#" ariaLabel="Learn more about our services">
+          <h4 class="font-bold mb-2">Interactive Primary Card</h4>
+          <p>Click or tap to learn more about our services.</p>
+        </Card>
+        
+        <Card variant="secondary">
+          <h4 class="font-bold mb-2">Secondary Card</h4>
+          <p>Great for highlighting important content.</p>
+        </Card>
+        
+        <Card variant="accent" interactive>
+          <h4 class="font-bold mb-2">Accent Card</h4>
+          <p>Perfect for calls to action and important notices.</p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">Brand Colors</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-brand-green border-brutalist rounded-brutalist-md shadow-brutalist-sm">Green</div>
+      <div class="p-6 bg-brand-orange border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Orange</div>
+      <div class="p-6 bg-brand-yellow border-brutalist rounded-brutalist-md shadow-brutalist-sm">Yellow</div>
+      <div class="p-6 bg-brand-blue border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Blue</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Tailwind Utilities</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 bg-gray-100 rounded-md">
+        <h3 class="text-xl font-bold mb-3">Typography</h3>
+        <p class="text-xs mb-1">Extra Small (xs)</p>
+        <p class="text-sm mb-1">Small (sm)</p>
+        <p class="text-base mb-1">Base</p>
+        <p class="text-lg mb-1">Large (lg)</p>
+        <p class="text-xl mb-1">Extra Large (xl)</p>
+        <p class="text-2xl mb-1">2XL</p>
+      </div>
+      <div class="p-6 bg-gray-100 rounded-md">
+        <h3 class="text-xl font-bold mb-3">Spacing</h3>
+        <div class="flex gap-2 flex-wrap">
+          <div class="p-1 bg-brand-blue-light border">p-1</div>
+          <div class="p-2 bg-brand-blue-light border">p-2</div>
+          <div class="p-4 bg-brand-blue-light border">p-4</div>
+          <div class="p-6 bg-brand-blue-light border">p-6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

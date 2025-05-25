@@ -1,0 +1,38 @@
+{
+  "welcome": {
+    "title": {
+      "en": "Crafting Digital Experiences with Bold Creativity",
+      "fr": "Créer des expériences digitales avec audace et créativité"
+    },
+    "subtitle": {
+      "en": "We design and develop stunning websites that stand out with our unique neo-brutalist approach, blending modern functionality with bold, artistic expression.",
+      "fr": "Nous concevons et développons des sites web remarquables qui se démarquent par notre approche néo-brutaliste unique, alliant fonctionnalité moderne et expression artistique audacieuse."
+    }
+  },
+  "components": {
+    "title": {
+      "en": "Neo-Brutalist Components",
+      "fr": "Composants Néo-Brutalistes"
+    },
+    "buttons": {
+      "en": "Buttons",
+      "fr": "Boutons"
+    },
+    "defaultButton": {
+      "en": "Default Button",
+      "fr": "Bouton par défaut"
+    },
+    "primary": {
+      "en": "Primary",
+      "fr": "Principal"
+    },
+    "secondary": {
+      "en": "Secondary",
+      "fr": "Secondaire"
+    },
+    "accent": {
+      "en": "Accent",
+      "fr": "Accent"
+    }
+  }
+}

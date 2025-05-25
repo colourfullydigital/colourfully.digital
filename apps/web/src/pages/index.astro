@@ -1,7 +1,10 @@
 ---
+export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Card from '../components/Card.astro';
+const redirectTo = '/en/';
+return Astro.redirect(redirectTo, 302);
 ---
 
 <Layout title="Welcome to Colourfully Digital">

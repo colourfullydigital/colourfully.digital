@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import Card from '../../components/Card.astro';
+import { createTranslator } from '../../i18n';
+import content from '../../i18n/content.json';
+import nav from '../../i18n/nav.json';
+
+const locale = 'fr';
+const t = createTranslator({ ...content, ...nav }, locale);
+---
+
+<Layout title="Bienvenue sur Colourfully Digital">
+  <Hero
+    title={t('welcome.title')}
+    subtitle={t('welcome.subtitle')}
+    primaryCTA={{
+      text: t('nav.startProject'),
+      href: "/fr/contact"
+    }}
+    secondaryCTA={{
+      text: t('nav.viewWork'),
+      href: "/fr/portfolio"
+    }}
+  />
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">{t('components.title')}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Button showcase -->
+      <div class="brutalist-box">
+        <h3 class="text-xl font-bold mb-3">{t('components.buttons')}</h3>
+        <div class="flex flex-wrap gap-4">
+          <button class="button">{t('components.defaultButton')}</button>
+          <button class="button button-primary">{t('components.primary')}</button>
+          <button class="button button-secondary">{t('components.secondary')}</button>
+          <button class="button button-accent">{t('components.accent')}</button>
+        </div>
+      </div>
+
+      <!-- Card Components -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-bold mb-3">Composants de carte</h3>
+        <Card>
+          <h4 class="font-bold mb-2">Carte par défaut</h4>
+          <p>Un composant de carte néo-brutaliste avec effets au survol.</p>
+        </Card>
+        
+        <Card variant="primary" interactive href="#" ariaLabel="En savoir plus sur nos services">
+          <h4 class="font-bold mb-2">Carte primaire interactive</h4>
+          <p>Cliquez ou tapez pour en savoir plus sur nos services.</p>
+        </Card>
+        
+        <Card variant="secondary">
+          <h4 class="font-bold mb-2">Carte secondaire</h4>
+          <p>Parfait pour mettre en évidence un contenu important.</p>
+        </Card>
+        
+        <Card variant="accent" interactive>
+          <h4 class="font-bold mb-2">Carte d'accent</h4>
+          <p>Idéal pour les appels à l'action et les notifications importantes.</p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">Couleurs de marque</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-brand-green border-brutalist rounded-brutalist-md shadow-brutalist-sm">Vert</div>
+      <div class="p-6 bg-brand-orange border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Orange</div>
+      <div class="p-6 bg-brand-yellow border-brutalist rounded-brutalist-md shadow-brutalist-sm">Jaune</div>
+      <div class="p-6 bg-brand-blue border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Bleu</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Utilitaires Tailwind</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 bg-gray-100 rounded-md">
+        <h3 class="text-xl font-bold mb-3">Typographie</h3>
+        <p class="text-xs mb-1">Très petit (xs)</p>
+        <p class="text-sm mb-1">Petit (sm)</p>
+        <p class="text-base mb-1">Base</p>
+        <p class="text-lg mb-1">Grand (lg)</p>
+        <p class="text-xl mb-1">Très grand (xl)</p>
+        <p class="text-2xl mb-1">2XL</p>
+      </div>
+      <div class="p-6 bg-gray-100 rounded-md">
+        <h3 class="text-xl font-bold mb-3">Espacement</h3>
+        <div class="flex gap-2 flex-wrap">
+          <div class="p-1 bg-brand-blue-light border">p-1</div>
+          <div class="p-2 bg-brand-blue-light border">p-2</div>
+          <div class="p-4 bg-brand-blue-light border">p-4</div>
+          <div class="p-6 bg-brand-blue-light border">p-6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -9,6 +9,15 @@ export default defineConfig({
   output: 'server',
   adapter: netlify(),
   
+  // i18n configuration
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr'],
+    routing: {
+      prefixDefaultLocale: true
+    }
+  },
+  
   // Configure site metadata
   site: 'https://colourfully.digital',
   

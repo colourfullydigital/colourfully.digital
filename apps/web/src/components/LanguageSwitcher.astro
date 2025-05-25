@@ -1,0 +1,84 @@
+---
+import { useLanguage } from '../contexts/LanguageContext';
+
+interface Props {
+  class?: string;
+}
+---
+
+<div class={`language-switcher ${Astro.props.class || ''}`}>
+  <button
+    class="lang-btn"
+    data-current-lang="en"
+    aria-label="Switch to English"
+  >
+    EN
+  </button>
+  <span class="separator">/</span>
+  <button
+    class="lang-btn"
+    data-current-lang="fr"
+    aria-label="Switch to French"
+  >
+    FR
+  </button>
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+  }
+
+  .lang-btn {
+    padding: 0.25rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .lang-btn[data-active="true"] {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .lang-btn:hover {
+    opacity: 1;
+  }
+
+  .separator {
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  function initLanguageSwitcher() {
+    const currentPath = window.location.pathname;
+    const currentLang = currentPath.split('/')[1] || 'en';
+    
+    const buttons = document.querySelectorAll('.lang-btn');
+    buttons.forEach(btn => {
+      const lang = btn.getAttribute('data-current-lang');
+      if (lang === currentLang) {
+        btn.setAttribute('data-active', 'true');
+      }
+      
+      btn.addEventListener('click', () => {
+        const targetLang = btn.getAttribute('data-current-lang');
+        if (targetLang && targetLang !== currentLang) {
+          // Update the URL path to switch language
+          const newPath = currentPath.replace(`/${currentLang}`, `/${targetLang}`);
+          window.location.href = newPath;
+        }
+      });
+    });
+  }
+
+  // Initialize when the DOM is loaded
+  document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+</script>
