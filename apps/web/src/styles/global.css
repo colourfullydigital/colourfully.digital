@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Tailwind Layers */
+@layer base {
+  /* Base styles that should be applied before components */
+}
+
+@layer components {
+  /* Component styles */
+}
+
+@layer utilities {
+  /* Custom utility classes */
+}
+
 /* Design Tokens */
 :root {
   /* Colors */

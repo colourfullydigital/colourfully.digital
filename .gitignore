@@ -126,5 +126,13 @@ out
 # Turbo cache
 .turbo/
 
+# Copilot
+.copilot
+.copilot/
+
+# GitHub Copilot
+.copilot/
+
 # IDE files
 .vscode/*
+.github/copilot-instructions.md

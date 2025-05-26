@@ -21,7 +21,7 @@ const t = createTranslator(nav, currentLocale);
 
 // Build localized navigation items
 const navigationItems = [
-  { label: t('home'), href: `/${currentLocale}/` },
+  { label: t('nav.home'), href: `/${currentLocale}/` },
   { 
     label: 'Services',
     href: `/${currentLocale}/services`,
@@ -31,8 +31,8 @@ const navigationItems = [
       { label: 'Consulting', href: `/${currentLocale}/services/consulting` }
     ]
   },
-  { label: t('about'), href: `/${currentLocale}/about` },
-  { label: t('contact'), href: `/${currentLocale}/contact` }
+  { label: t('nav.about'), href: `/${currentLocale}/about` },
+  { label: t('nav.contact'), href: `/${currentLocale}/contact` }
 ];
 
 // Generate SEO metadata
@@ -92,9 +92,6 @@ const structuredData = generateStructuredData({
   </head>
   <body class="min-h-screen bg-[#ffffff] text-[#111827]">
     <Navigation items={navigationItems} />
-    <div class="fixed top-4 right-4 z-50">
-      <LanguageSwitcher />
-    </div>
     <Container>
       <slot />
     </Container>

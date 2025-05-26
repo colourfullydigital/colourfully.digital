@@ -1,26 +1,28 @@
 {
-  "home": {
-    "en": "Home",
-    "fr": "Accueil"
-  },
-  "about": {
-    "en": "About",
-    "fr": "À propos"
-  },
-  "contact": {
-    "en": "Contact",
-    "fr": "Contact"
-  },
-  "portfolio": {
-    "en": "Portfolio",
-    "fr": "Portfolio"
-  },
-  "startProject": {
-    "en": "Start Your Project",
-    "fr": "Démarrer votre projet"
-  },
-  "viewWork": {
-    "en": "View Our Work",
-    "fr": "Voir nos réalisations"
+  "nav": {
+    "home": {
+      "en": "Home",
+      "fr": "Accueil"
+    },
+    "about": {
+      "en": "About",
+      "fr": "À propos"
+    },
+    "contact": {
+      "en": "Contact",
+      "fr": "Contact"
+    },
+    "portfolio": {
+      "en": "Portfolio",
+      "fr": "Portfolio"
+    },
+    "startProject": {
+      "en": "Start Your Project",
+      "fr": "Démarrer votre projet"
+    },
+    "viewWork": {
+      "en": "View Our Work",
+      "fr": "Voir nos réalisations"
+    }
   }
 }

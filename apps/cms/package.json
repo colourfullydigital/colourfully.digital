@@ -15,12 +15,12 @@
     "@storyblok/js": "^4.0.0",
     "@storyblok/react": "^3.0.0",
     "astro": "^5.8.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
+    "@types/react": "^19.1.5",
     "@types/styled-components": "^5.1.26",
     "eslint-config-custom": "workspace:*"
   }

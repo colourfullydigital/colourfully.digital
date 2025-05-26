@@ -7,52 +7,94 @@ interface Props {
 ---
 
 <div class={`language-switcher ${Astro.props.class || ''}`}>
-  <button
-    class="lang-btn"
-    data-current-lang="en"
-    aria-label="Switch to English"
-  >
-    EN
-  </button>
-  <span class="separator">/</span>
-  <button
-    class="lang-btn"
-    data-current-lang="fr"
-    aria-label="Switch to French"
-  >
-    FR
-  </button>
+  <div class="lang-buttons">
+    <button
+      class="lang-btn"
+      data-current-lang="en"
+      aria-label="Switch to English"
+    >
+      EN
+    </button>
+    <span class="separator">/</span>
+    <button
+      class="lang-btn"
+      data-current-lang="fr"
+      aria-label="Switch to French"
+    >
+      FR
+    </button>
+    <span class="active-indicator" aria-hidden="true"></span>
+  </div>
 </div>
 
 <style>
   .language-switcher {
     display: flex;
     align-items: center;
+    padding: 0.25rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    position: relative;
+    /* background removed */
+    /* backdrop-filter removed */
+  }
+
+  .lang-buttons {
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
-    font-weight: bold;
+    position: relative;
   }
 
   .lang-btn {
-    padding: 0.25rem;
+    padding: 0.5rem 0.75rem;
     cursor: pointer;
     border: none;
     background: none;
-    color: inherit;
+    color: currentColor;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    position: relative;
+    z-index: 1;
+    transition: filter 0.3s ease, opacity 0.3s ease;
     opacity: 0.7;
-    transition: opacity 0.2s;
+    mix-blend-mode: difference;
   }
 
   .lang-btn[data-active="true"] {
     opacity: 1;
-    text-decoration: underline;
+    filter: contrast(1.5);
   }
 
   .lang-btn:hover {
+    opacity: 0.9;
+    filter: contrast(1.75);
+  }
+
+  .lang-btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
     opacity: 1;
+    filter: contrast(2);
   }
 
   .separator {
-    opacity: 0.5;
+    opacity: 0.3;
+    user-select: none;
+  }
+
+  .active-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: currentColor;
+    opacity: 0.1;
+    border-radius: 0.375rem;
+    z-index: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    mix-blend-mode: difference;
   }
 </style>
 
@@ -61,24 +103,51 @@ interface Props {
     const currentPath = window.location.pathname;
     const currentLang = currentPath.split('/')[1] || 'en';
     
-    const buttons = document.querySelectorAll('.lang-btn');
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.lang-btn');
+    const activeIndicator = document.querySelector<HTMLElement>('.active-indicator');
+    const container = document.querySelector<HTMLElement>('.lang-buttons');
+
+    function updateActiveIndicator(button: HTMLButtonElement): void {
+      if (!activeIndicator || !button || !container) return;
+      const buttonRect = button.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      activeIndicator.style.width = `${buttonRect.width}px`;
+      activeIndicator.style.transform = `translateX(${buttonRect.left - containerRect.left}px)`;
+    }
+
     buttons.forEach(btn => {
       const lang = btn.getAttribute('data-current-lang');
       if (lang === currentLang) {
         btn.setAttribute('data-active', 'true');
+        // Initialize active indicator position
+        requestAnimationFrame(() => updateActiveIndicator(btn));
       }
       
       btn.addEventListener('click', () => {
         const targetLang = btn.getAttribute('data-current-lang');
         if (targetLang && targetLang !== currentLang) {
+          buttons.forEach(b => b.setAttribute('data-active', 'false'));
+          btn.setAttribute('data-active', 'true');
+          updateActiveIndicator(btn);
+          
           // Update the URL path to switch language
           const newPath = currentPath.replace(`/${currentLang}`, `/${targetLang}`);
           window.location.href = newPath;
         }
       });
     });
+
+    // Update indicator position on resize
+    window.addEventListener('resize', () => {
+      const activeButton = document.querySelector<HTMLButtonElement>('.lang-btn[data-active="true"]');
+      if (activeButton) updateActiveIndicator(activeButton);
+    });
   }
 
   // Initialize when the DOM is loaded
-  document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+  } else {
+    initLanguageSwitcher();
+  }
 </script>

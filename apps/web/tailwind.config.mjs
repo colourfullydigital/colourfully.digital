@@ -45,6 +45,6 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    // require('@tailwindcss/forms'), // This line is causing the error
   ]
 }

@@ -1,7 +1,8 @@
+import tailwindVite from '@tailwindcss/vite';
 // @ts-check
 import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify';
-import tailwindcss from '@tailwindcss/vite';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,8 +22,11 @@ export default defineConfig({
   // Configure site metadata
   site: 'https://colourfully.digital',
   
+  // Add Tailwind via Vite plugin (for Tailwind v4+)
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindVite()
+    ],
     server: {
       watch: {
         usePolling: true

@@ -1,4 +1,6 @@
 ---
+import LanguageSwitcher from '../LanguageSwitcher.astro';
+
 interface Props {
   items: {
     label: string;
@@ -14,6 +16,9 @@ const pathname = new URL(Astro.request.url).pathname;
 <nav class="nav-container" aria-label="Main navigation">
   <!-- Desktop Navigation -->
   <div class="nav-desktop">
+    <a href="/" class="logo">
+      <img src="/logo.png" alt="Colourfully Digital" width="40" height="40" />
+    </a>
     <ul class="nav-list" role="menubar">
       {items.map(item => (
         <li 
@@ -64,10 +69,16 @@ const pathname = new URL(Astro.request.url).pathname;
         </li>
       ))}
     </ul>
+    <div class="nav-lang-switcher">
+      <LanguageSwitcher />
+    </div>
   </div>
 
   <!-- Mobile Navigation -->
   <div class="nav-mobile">
+    <div class="nav-lang-switcher-mobile">
+      <LanguageSwitcher />
+    </div>
     <button 
       class="hamburger"
       aria-label="Menu"
@@ -122,6 +133,21 @@ const pathname = new URL(Astro.request.url).pathname;
     </div>
   </div>
 </nav>
+</nav>
+<style>
+  .nav-lang-switcher {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    color: var(--color-text-primary);
+  }
+  .nav-lang-switcher-mobile {
+    margin-left: 0;
+    margin-top: var(--space-4);
+    justify-content: flex-end;
+    display: flex;
+  }
+</style>
 
 <script>
   // Handle Desktop Dropdowns
@@ -172,9 +198,41 @@ const pathname = new URL(Astro.request.url).pathname;
     border-bottom: var(--border-width-thick) solid var(--color-black);
   }
 
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: var(--space-4);
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
   .nav-desktop {
-    display: none;
+    display: flex;
+    align-items: center;
     padding: var(--space-4);
+    width: 100%;
+    gap: var(--space-4);
+  }
+  .nav-list {
+    display: flex;
+    flex: 1 1 0%;
+    gap: var(--space-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .nav-lang-switcher {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-primary);
+    flex-shrink: 0;
   }
 
   .nav-list {
@@ -359,7 +417,7 @@ const pathname = new URL(Astro.request.url).pathname;
     }
 
     .nav-desktop {
-      display: block;
+      display: flex;
     }
   }
 
