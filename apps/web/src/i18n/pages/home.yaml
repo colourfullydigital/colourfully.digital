@@ -1,0 +1,52 @@
+# Homepage content translations
+welcome:
+  title:
+    en: "Crafting Digital Experiences with Bold Creativity"
+    fr: "Créer des expériences digitales avec audace et créativité"
+  subtitle:
+    en: "We design and develop stunning websites that stand out with our unique neo-brutalist approach, blending modern functionality with bold, artistic expression."
+    fr: "Nous concevons et développons des sites web remarquables qui se démarquent par notre approche néo-brutaliste unique, alliant fonctionnalité moderne et expression artistique audacieuse."
+  
+cta:
+  start_project:
+    en: "Start Your Project"
+    fr: "Démarrer votre projet"
+  view_work:
+    en: "View Our Work"
+    fr: "Voir nos réalisations"
+  
+services:
+  count:
+    zero:
+      en: "No services available"
+      fr: "Aucun service disponible"
+    one:
+      en: "1 service available"
+      fr: "1 service disponible"
+    other:
+      en: "{{count}} services available"
+      fr: "{{count}} services disponibles"
+  
+  web_development:
+    title:
+      en: "Web Development"
+      fr: "Développement Web"
+    description:
+      en: "Modern web applications built with cutting-edge technology"
+      fr: "Applications web modernes construites avec les dernières technologies"
+  
+  design:
+    title:
+      en: "Design Services"
+      fr: "Services de Design"
+    description:
+      en: "Unique neo-brutalist designs that make your brand stand out"
+      fr: "Designs néo-brutalistes uniques qui font ressortir votre marque"
+  
+  consulting:
+    title:
+      en: "Technical Consulting"
+      fr: "Conseil Technique"
+    description:
+      en: "Expert guidance on your digital transformation journey"
+      fr: "Accompagnement expert dans votre transformation digitale"

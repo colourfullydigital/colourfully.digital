@@ -1,0 +1,24 @@
+{
+  "common": {
+    "button": {
+      "submit": {
+        "en": "Submit",
+        "fr": "Envoyer"
+      },
+      "cancel": {
+        "en": "Cancel",
+        "fr": "Annuler"
+      }
+    },
+    "error": {
+      "required": {
+        "en": "This field is required",
+        "fr": "Ce champ est obligatoire"
+      },
+      "invalid": {
+        "en": "Invalid value",
+        "fr": "Valeur invalide"
+      }
+    }
+  }
+}
