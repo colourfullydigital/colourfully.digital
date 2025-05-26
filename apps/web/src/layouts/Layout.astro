@@ -4,6 +4,8 @@ import Container from '../components/layout/Container.astro';
 import Navigation from '../components/layout/Navigation.astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import { createTranslator } from '../i18n';
+import type { SupportedLocale } from '../i18n';
+import { generateStructuredData, getLanguageMetaTags, generateAlternateUrls } from '../utils/seo';
 import nav from '../i18n/nav.json';
 
 interface Props {
@@ -14,14 +16,14 @@ interface Props {
 const { title, description = "Colourfully Digital - Creative web development and design" } = Astro.props;
 
 const currentPath = new URL(Astro.request.url).pathname;
-const currentLocale = currentPath.split('/')[1] || 'en';
+const currentLocale = (currentPath.split('/')[1] || 'en') as SupportedLocale;
 const t = createTranslator(nav, currentLocale);
 
 // Build localized navigation items
 const navigationItems = [
   { label: t('home'), href: `/${currentLocale}/` },
   { 
-    label: 'Services', // TODO: Add to translations
+    label: 'Services',
     href: `/${currentLocale}/services`,
     children: [
       { label: 'Web Development', href: `/${currentLocale}/services/web-development` },
@@ -33,20 +35,37 @@ const navigationItems = [
   { label: t('contact'), href: `/${currentLocale}/contact` }
 ];
 
-// Generate alternate language URLs
-const alternateUrls = {
-  en: `${Astro.site}en${currentPath.replace(/^\/(en|fr)/, '')}`,
-  fr: `${Astro.site}fr${currentPath.replace(/^\/(en|fr)/, '')}`
-};
+// Generate SEO metadata
+const siteUrl = 'https://colourfully.digital';
+const alternateUrls = generateAlternateUrls(siteUrl, currentPath);
+const languageMeta = getLanguageMetaTags(currentLocale);
+
+// Generate structured data
+const structuredData = generateStructuredData({
+  title,
+  description,
+  currentLocale,
+  currentPath,
+  siteUrl
+});
 ---
 
 <!DOCTYPE html>
-<html lang={currentLocale}>
+<html lang={languageMeta.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="language" content={languageMeta.htmlLang} />
     <title>{title}</title>
+
+    <!-- Language alternates -->
+    <link rel="alternate" href={alternateUrls.en} hreflang="en" />
+    <link rel="alternate" href={alternateUrls.fr} hreflang="fr" />
+    <link rel="alternate" href={alternateUrls.en} hreflang="en-US" />
+    <link rel="alternate" href={alternateUrls.fr} hreflang="fr-FR" />
+    <link rel="alternate" href={alternateUrls.en} hreflang="x-default" />
+    <link rel="canonical" href={alternateUrls[currentLocale]} />
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -54,18 +73,22 @@ const alternateUrls = {
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Language alternates -->
-    <link rel="alternate" href={alternateUrls.en} hreflang="en" />
-    <link rel="alternate" href={alternateUrls.fr} hreflang="fr" />
-    <link rel="canonical" href={alternateUrls[currentLocale as 'en' | 'fr']} />
-
     <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Colourfully Digital" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={alternateUrls[currentLocale as 'en' | 'fr']} />
-    <meta property="og:locale" content={currentLocale === 'fr' ? 'fr_FR' : 'en_US'} />
-    {currentLocale === 'fr' && <meta property="og:locale:alternate" content="en_US" />}
-    {currentLocale === 'en' && <meta property="og:locale:alternate" content="fr_FR" />}
+    <meta property="og:url" content={alternateUrls[currentLocale]} />
+    <meta property="og:locale" content={languageMeta.ogLocale} />
+    <meta property="og:locale:alternate" content={languageMeta.alternateLocale} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="min-h-screen bg-[#ffffff] text-[#111827]">
     <Navigation items={navigationItems} />

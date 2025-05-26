@@ -51,6 +51,10 @@ dist/
 .netlify/
 .astro/
 
+# Test reports
+html/
+apps/**/html/
+
 # TypeScript cache
 *.tsbuildinfo
 

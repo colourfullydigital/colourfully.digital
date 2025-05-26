@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home page -->
+  <url>
+    <loc>https://colourfully.digital/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://colourfully.digital/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Services pages -->
+  <url>
+    <loc>https://colourfully.digital/en/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/services"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://colourfully.digital/fr/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/services"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About page -->
+  <url>
+    <loc>https://colourfully.digital/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/about"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://colourfully.digital/fr/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/about"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact page -->
+  <url>
+    <loc>https://colourfully.digital/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://colourfully.digital/fr/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colourfully.digital/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://colourfully.digital/fr/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

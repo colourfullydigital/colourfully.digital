@@ -1,4 +1,4 @@
-/** @type {import('@tailwindcss/postcss').Config} */
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
@@ -43,5 +43,8 @@ export default {
         'mono': 'var(--font-mono)',
       },
     },
-  }
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ]
 }

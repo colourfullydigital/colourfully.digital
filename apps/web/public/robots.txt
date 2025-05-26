@@ -1,0 +1,18 @@
+# Allow all robots complete access
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://colourfully.digital/sitemap.xml
+
+# Language specific allow rules
+Allow: /en/
+Allow: /fr/
+
+# Prevent access to development/staging URLs if they exist
+Disallow: /dev/
+Disallow: /staging/
+
+# Prevent indexing of search results or filtered pages if they exist
+Disallow: /*/search
+Disallow: /*/filter

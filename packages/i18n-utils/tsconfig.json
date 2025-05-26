@@ -16,11 +16,12 @@
     "declaration": true,
     "outDir": "./dist",
     "baseUrl": "./src",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "paths": {
       "react": ["./node_modules/@types/react"]
     },
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": ["src/**/*", "tests/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
