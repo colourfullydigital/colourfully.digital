@@ -112,6 +112,16 @@
   --max-container: 77.5rem; /* 1240px */
   --layout-width: clamp(var(--min-container, 20rem), 90vw, var(--max-container));
   --layout-gutter: var(--space-4);
+  
+  /* High Contrast Mode Colors */
+  --color-high-contrast-background: #FFFFFF;
+  --color-high-contrast-text: #000000;
+  --color-high-contrast-border: #000000;
+  --color-high-contrast-focus: #000000;
+  --color-high-contrast-link: #0000EE;
+  --color-high-contrast-link-visited: #551A8B;
+  --color-high-contrast-button: #000000;
+  --color-high-contrast-button-text: #FFFFFF;
 }
 
 /* Dark Mode */
@@ -125,6 +135,59 @@
     --color-text-primary: #FFFFFF;
     --color-text-secondary: #BBBBBB;
     --color-text-hint: #888888;
+  }
+}
+
+/* High Contrast Mode - System Preference */
+@media (prefers-contrast: more) {
+  :root {
+    --color-background: var(--color-high-contrast-background);
+    --color-text-primary: var(--color-high-contrast-text);
+    --color-border: var(--color-high-contrast-border);
+    --color-surface: var(--color-high-contrast-background);
+    --color-surface-variant: var(--color-high-contrast-background);
+    
+    /* Increase border widths for better visibility */
+    --border-width-thick: 3px;
+    
+    /* Increase text contrast */
+    --color-text-secondary: var(--color-high-contrast-text);
+    --color-text-hint: var(--color-high-contrast-text);
+    
+    /* Increase focus visibility */
+    outline-width: 3px;
+    outline-style: solid;
+    outline-color: var(--color-high-contrast-focus);
+  }
+
+  /* Enhance link visibility */
+  a {
+    color: var(--color-high-contrast-link);
+    text-decoration: underline;
+  }
+
+  a:visited {
+    color: var(--color-high-contrast-link-visited);
+  }
+
+  /* Enhance button contrast */
+  .button {
+    background-color: var(--color-high-contrast-button);
+    color: var(--color-high-contrast-button-text);
+    border-color: var(--color-high-contrast-text);
+    outline: 3px solid transparent;
+  }
+
+  .button:focus-visible {
+    outline-color: var(--color-high-contrast-focus);
+    outline-offset: 4px;
+  }
+
+  /* Remove shadows in high contrast mode */
+  .button,
+  .card,
+  .brutalist-box {
+    box-shadow: none;
   }
 }
 

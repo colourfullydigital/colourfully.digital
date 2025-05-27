@@ -79,7 +79,6 @@ const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
   }
 
   .shapes-container {
@@ -89,8 +88,8 @@ const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    overflow: hidden;
     pointer-events: none;
+    z-index: 0;
   }
 
   .geometric-shape {
