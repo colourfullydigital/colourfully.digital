@@ -15,18 +15,18 @@ interface Props {
 const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
 ---
 
-<section class="hero relative py-16 lg:py-24">
+<section class="hero relative py-16 lg:py-24" role="banner" aria-labelledby="hero-title">
   <!-- Geometric Shapes -->
   <div class="shapes-container absolute inset-0 left-0 right-0 w-screen" aria-hidden="true">
-    <div class="geometric-shape shape-1" />
-    <div class="geometric-shape shape-2" />
-    <div class="geometric-shape shape-3" />
-    <div class="geometric-shape shape-4" />
+    <div class="geometric-shape shape-1" role="presentation" />
+    <div class="geometric-shape shape-2" role="presentation" />
+    <div class="geometric-shape shape-3" role="presentation" />
+    <div class="geometric-shape shape-4" role="presentation" />
   </div>
 
   <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl">
-      <h1 class="gradient-text mb-6 text-5xl font-black leading-tight tracking-tight md:text-6xl lg:text-7xl">
+      <h1 id="hero-title" class="gradient-text mb-6 text-5xl font-black leading-tight tracking-tight md:text-6xl lg:text-7xl">
         {title}
       </h1>
       
@@ -34,14 +34,26 @@ const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
         {subtitle}
       </p>
       
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4" role="group" aria-label="Hero call to action">
         <a
           href={primaryCTA.href}
           class="button button-primary inline-flex items-center"
+          role="button"
+          aria-label={primaryCTA.text}
         >
           {primaryCTA.text}
-          <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          <svg 
+            class="ml-2 h-5 w-5" 
+            viewBox="0 0 20 20" 
+            fill="currentColor"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path 
+              fill-rule="evenodd" 
+              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" 
+              clip-rule="evenodd" 
+            />
           </svg>
         </a>
         
@@ -49,6 +61,8 @@ const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
           <a
             href={secondaryCTA.href}
             class="button button-secondary inline-flex items-center"
+            role="button"
+            aria-label={secondaryCTA.text}
           >
             {secondaryCTA.text}
           </a>
@@ -65,7 +79,7 @@ const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
     display: flex;
     align-items: center;
     position: relative;
-    width: 100%;
+    overflow: hidden;
   }
 
   .shapes-container {
@@ -76,6 +90,7 @@ const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
     margin-left: -50vw;
     margin-right: -50vw;
     overflow: hidden;
+    pointer-events: none;
   }
 
   .geometric-shape {

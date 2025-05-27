@@ -91,14 +91,24 @@ const structuredData = generateStructuredData({
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="min-h-screen bg-[#ffffff] text-[#111827]">
-    <a href="#main-content" class="skip-to-content">
+    <a href="#main-content" class="skip-to-content" aria-label={t('nav.skipToContent')}>
       {t('nav.skipToContent')}
     </a>
-    <Navigation items={navigationItems} />
+    <header role="banner">
+      <Navigation items={navigationItems} />
+    </header>
     <Container>
-      <main id="main-content" tabindex="-1">
+      <main id="main-content" role="main" tabindex="-1">
         <slot />
       </main>
+      <footer role="contentinfo" class="mt-auto py-8">
+        <div class="flex justify-between items-center">
+          <p>&copy; {new Date().getFullYear()} Colourfully Digital</p>
+          <nav aria-label={t('nav.footer')}>
+            {/* Footer navigation can be added here */}
+          </nav>
+        </div>
+      </footer>
     </Container>
   </body>
 </html>

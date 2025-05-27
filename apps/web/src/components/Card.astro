@@ -1,10 +1,15 @@
 ---
+type Variant = 'default' | 'primary' | 'secondary' | 'accent';
+
 interface Props {
-  variant?: 'default' | 'primary' | 'secondary' | 'accent';
+  variant?: Variant;
   className?: string;
   interactive?: boolean;
   href?: string;
   ariaLabel?: string;
+  pressed?: boolean;
+  selected?: boolean;
+  disabled?: boolean;
 }
 
 const { 
@@ -13,17 +18,16 @@ const {
   interactive = false,
   href,
   ariaLabel,
-  ...rest
+  pressed,
+  selected,
+  disabled
 } = Astro.props;
 
-const Tag = href ? 'a' : interactive ? 'button' : 'div';
-
-// Each variant sets both background and text color for proper contrast
 const variantClasses = {
-  default: 'bg-[var(--color-white)] text-[#111827]',
-  primary: 'bg-[var(--color-green)] text-[#111827]',
-  secondary: 'bg-[var(--color-blue-dark)] text-white',
-  accent: 'bg-[var(--color-orange-dark)] text-white'
+  'default': 'bg-[var(--color-white)] text-[#111827]',
+  'primary': 'bg-[var(--color-green)] text-[#111827]',
+  'secondary': 'bg-[var(--color-blue-dark)] text-white',
+  'accent': 'bg-[var(--color-orange-dark)] text-white'
 };
 
 const baseClasses = `
@@ -51,24 +55,68 @@ const interactiveClasses = interactive || href ? `
   focus-visible:ring-opacity-50
 ` : '';
 
-const classes = `
-  ${baseClasses}
-  ${variantClasses[variant]}
-  ${interactiveClasses}
-  ${className}
-`.trim();
+const finalClasses = [
+  baseClasses,
+  variantClasses[variant],
+  interactiveClasses,
+  className,
+  disabled ? 'opacity-50 cursor-not-allowed' : ''
+].filter(Boolean).join(' ');
 ---
 
-<Tag 
-  class={classes}
-  href={href}
-  aria-label={ariaLabel}
-  {...(interactive && !href ? { type: 'button', role: 'button' } : {})}
-  {...rest}
->
-  <slot />
-  {interactive && <div class="card-overlay" />}
-</Tag>
+{href ? (
+  <a 
+    class={finalClasses}
+    href={href}
+    aria-label={ariaLabel}
+    aria-disabled={disabled ? 'true' : null}
+    aria-pressed={pressed ? 'true' : null}
+    aria-selected={selected ? 'true' : null}
+    tabindex={disabled ? -1 : 0}
+  >
+    <slot />
+    {interactive && <div class="card-overlay" aria-hidden="true" />}
+  </a>
+) : interactive ? (
+  <button 
+    class={finalClasses}
+    type="button"
+    aria-label={ariaLabel}
+    aria-disabled={disabled ? 'true' : null}
+    aria-pressed={pressed ? 'true' : null}
+    aria-selected={selected ? 'true' : null}
+    tabindex={disabled ? -1 : 0}
+    disabled={disabled}
+  >
+    <slot />
+    <div class="card-overlay" aria-hidden="true" />
+  </button>
+) : (
+  <div 
+    class={finalClasses}
+    aria-label={ariaLabel}
+    aria-disabled={disabled ? 'true' : null}
+    aria-pressed={pressed ? 'true' : null}
+    aria-selected={selected ? 'true' : null}
+  >
+    <slot />
+  </div>
+)}
+
+<script>
+  // Add keyboard interaction support
+  const cards = document.querySelectorAll<HTMLElement>('.card[role="button"]');
+  cards.forEach(card => {
+    card.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (card instanceof HTMLElement) {
+          card.click();
+        }
+      }
+    });
+  });
+</script>
 
 <style>
   .card {
@@ -93,11 +141,8 @@ const classes = `
     opacity: 1;
   }
 
-  /* Ensure text maintains contrast in all states */
   .card:hover {
     text-decoration: none;
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
   }
 
   /* Improved focus styles */
