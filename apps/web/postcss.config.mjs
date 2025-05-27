@@ -1,4 +1,4 @@
-import tailwind from 'tailwindcss';
+import tailwind from '@tailwindcss/postcss';
 import autoprefixer from 'autoprefixer';
 
 export default {

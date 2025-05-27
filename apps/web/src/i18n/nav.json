@@ -15,12 +15,18 @@
     "en": "Portfolio",
     "fr": "Portfolio"
   },
-  "startProject": {
-    "en": "Start Your Project",
-    "fr": "Démarrer votre projet"
-  },
-  "viewWork": {
-    "en": "View Our Work",
-    "fr": "Voir nos réalisations"
+  "nav": {
+    "startProject": {
+      "en": "Start Your Project",
+      "fr": "Démarrer votre projet"
+    },
+    "viewWork": {
+      "en": "View Our Work",
+      "fr": "Voir nos réalisations"
+    },
+    "skipToContent": {
+      "en": "Skip to Content",
+      "fr": "Aller au contenu"
+    }
   }
 }
