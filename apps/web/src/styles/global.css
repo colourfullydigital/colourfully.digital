@@ -136,6 +136,48 @@ html {
   background-color: var(--color-background);
 }
 
+/* Global focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+  transition: outline-offset var(--animation-fast) var(--ease-out);
+}
+
+/* Special focus styles for clickable elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px var(--color-background);
+  border-radius: var(--radius-sm);
+}
+
+/* Focus style for form controls */
+input[type="text"]:focus-visible,
+input[type="email"]:focus-visible,
+input[type="password"]:focus-visible,
+input[type="search"]:focus-visible,
+input[type="number"]:focus-visible,
+input[type="tel"]:focus-visible,
+input[type="url"]:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+  border-color: var(--color-blue);
+}
+
+/* Focus style for buttons with background */
+.button:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 4px;
+  box-shadow: var(--shadow-sm), 0 0 0 4px var(--color-background);
+}
+
 body {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,6 @@
 ---
+import LanguageSwitcher from '../LanguageSwitcher.astro';
+
 interface Props {
   items: {
     label: string;
@@ -14,60 +16,82 @@ const pathname = new URL(Astro.request.url).pathname;
 <nav class="nav-container" aria-label="Main navigation">
   <!-- Desktop Navigation -->
   <div class="nav-desktop">
+    <a href="/" class="logo">
+      <img src="/logo.png" alt="Colourfully Digital" width="40" height="40" />
+    </a>
     <ul class="nav-list" role="menubar">
-      {items.map(item => (
-        <li 
-          class="nav-item" 
-          role="none"
-          class:list={[
-            "nav-item",
-            { "has-dropdown": item.children, "is-active": pathname === item.href }
-          ]}
-        >
-          {item.children ? (
-            <button 
-              class="nav-button" 
-              aria-expanded="false"
-              aria-haspopup="true"
+      {
+        items.map((item) => {
+          const isActive = pathname === item.href;
+          const hasDropdown = !!item.children;
+          
+          return (
+            <li 
+              class:list={[
+                "nav-item",
+                { "has-dropdown": hasDropdown, "is-active": isActive }
+              ]}
+              role="none"
             >
-              {item.label}
-              <span class="arrow" aria-hidden="true">▾</span>
-            </button>
-            <ul class="dropdown" role="menu">
-              {item.children.map(child => (
-                <li role="none">
+              {
+                hasDropdown ? (
+                  <>
+                    <button 
+                      class="nav-button" 
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      data-dropdown-trigger
+                    >
+                      {item.label}
+                      <span class="arrow" aria-hidden="true">▾</span>
+                    </button>
+                    <ul class="dropdown" role="menu">
+                      {
+                        item.children?.map((child) => (
+                          <li role="none">
+                            <a 
+                              href={child.href}
+                              class:list={[
+                                "dropdown-item",
+                                { "is-active": pathname === child.href }
+                              ]}
+                              role="menuitem"
+                            >
+                              {child.label}
+                            </a>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </>
+                ) : (
                   <a 
-                    href={child.href}
+                    href={item.href}
                     class:list={[
-                      "dropdown-item",
-                      { "is-active": pathname === child.href }
+                      "nav-link",
+                      { "is-active": isActive }
                     ]}
                     role="menuitem"
                   >
-                    {child.label}
+                    {item.label}
                   </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <a 
-              href={item.href}
-              class:list={[
-                "nav-link",
-                { "is-active": pathname === item.href }
-              ]}
-              role="menuitem"
-            >
-              {item.label}
-            </a>
-          )}
-        </li>
-      ))}
+                )
+              }
+            </li>
+          );
+        })
+      }
     </ul>
+    <div class="nav-lang-switcher">
+      <LanguageSwitcher />
+    </div>
   </div>
 
   <!-- Mobile Navigation -->
   <div class="nav-mobile">
+    <div class="nav-lang-switcher-mobile">
+      <LanguageSwitcher />
+    </div>
     <button 
       class="hamburger"
       aria-label="Menu"
@@ -122,13 +146,38 @@ const pathname = new URL(Astro.request.url).pathname;
     </div>
   </div>
 </nav>
+</nav>
+<style>
+  .nav-lang-switcher {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    color: var(--color-text-primary);
+  }
+  .nav-lang-switcher-mobile {
+    margin-left: 0;
+    margin-top: var(--space-4);
+    justify-content: flex-end;
+    display: flex;
+  }
+</style>
 
 <script>
   // Handle Desktop Dropdowns
-  const dropdownButtons = document.querySelectorAll('.nav-button');
+  const dropdownButtons = document.querySelectorAll('.nav-button[aria-haspopup="true"]');
+  
   dropdownButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
       const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other dropdowns first
+      dropdownButtons.forEach(otherButton => {
+        if (otherButton !== button) {
+          otherButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
       button.setAttribute('aria-expanded', (!isExpanded).toString());
     });
   });
@@ -167,14 +216,123 @@ const pathname = new URL(Astro.request.url).pathname;
 <style>
   .nav-container {
     position: relative;
+    z-index: 50;
     width: 100%;
     background-color: var(--color-surface);
-    border-bottom: var(--border-width-thick) solid var(--color-black);
   }
 
   .nav-desktop {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: var(--space-4);
+    border-bottom: var(--border-width-thick) solid var(--color-black);
+  }
+
+  @media (max-width: 767px) {
+    .nav-desktop {
+      display: none;
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .nav-button:hover {
+    background-color: var(--color-surface-variant);
+    border-radius: var(--radius-sm);
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 51;
+    min-width: 200px;
+    margin-top: var(--space-2);
+    padding: var(--space-2);
+    background-color: var(--color-surface);
+    border: var(--border-width-thick) solid var(--color-black);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-item:hover .dropdown,
+  .nav-button[aria-expanded="true"] + .dropdown {
+    display: block;
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .dropdown-item:hover {
+    background-color: var(--color-surface-variant);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: var(--space-4);
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .nav-desktop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: var(--space-4);
+    width: 100%;
+    gap: var(--space-4);
+  }
+  .nav-list {
+    display: flex;
+    flex: 1 1 0%;
+    gap: var(--space-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .nav-lang-switcher {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-primary);
+    flex-shrink: 0;
   }
 
   .nav-list {
@@ -220,6 +378,7 @@ const pathname = new URL(Astro.request.url).pathname;
     position: absolute;
     top: 100%;
     left: 0;
+    z-index: 51;  /* Higher than nav container */
     display: none;
     min-width: 200px;
     margin-top: var(--space-2);
@@ -228,10 +387,22 @@ const pathname = new URL(Astro.request.url).pathname;
     border: var(--border-width-thick) solid var(--color-black);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity var(--animation-fast) var(--ease-out),
+                transform var(--animation-fast) var(--ease-out),
+                visibility 0s linear var(--animation-fast);
   }
 
+  .nav-item:hover .dropdown,
   .nav-button[aria-expanded="true"] + .dropdown {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity var(--animation-fast) var(--ease-out),
+                transform var(--animation-fast) var(--ease-out),
+                visibility 0s linear;
   }
 
   .dropdown-item {
@@ -359,7 +530,7 @@ const pathname = new URL(Astro.request.url).pathname;
     }
 
     .nav-desktop {
-      display: block;
+      display: flex;
     }
   }
 

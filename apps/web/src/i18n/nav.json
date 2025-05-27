@@ -15,12 +15,34 @@
     "en": "Portfolio",
     "fr": "Portfolio"
   },
-  "startProject": {
-    "en": "Start Your Project",
-    "fr": "Démarrer votre projet"
-  },
-  "viewWork": {
-    "en": "View Our Work",
-    "fr": "Voir nos réalisations"
+  "nav": {
+    "startProject": {
+      "en": "Start Your Project",
+      "fr": "Démarrer votre projet"
+    },
+    "viewWork": {
+      "en": "View Our Work",
+      "fr": "Voir nos réalisations"
+    },
+    "skipToContent": {
+      "en": "Skip to Content",
+      "fr": "Aller au contenu"
+    },
+    "footer": {
+      "en": "Footer Navigation",
+      "fr": "Navigation du pied de page"
+    },
+    "main": {
+      "en": "Main Navigation",
+      "fr": "Navigation principale"
+    },
+    "menuButton": {
+      "en": "Toggle Menu",
+      "fr": "Ouvrir/Fermer le menu"
+    },
+    "mobileMenu": {
+      "en": "Mobile Menu",
+      "fr": "Menu mobile"
+    }
   }
 }

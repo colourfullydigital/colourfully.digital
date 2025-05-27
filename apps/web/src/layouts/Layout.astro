@@ -91,15 +91,53 @@ const structuredData = generateStructuredData({
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="min-h-screen bg-[#ffffff] text-[#111827]">
+    <a href="#main-content" class="skip-to-content">
+      {t('nav.skipToContent')}
+    </a>
     <Navigation items={navigationItems} />
-    <div class="fixed top-4 right-4 z-50">
-      <LanguageSwitcher />
-    </div>
     <Container>
-      <slot />
+      <main id="main-content" tabindex="-1">
+        <slot />
+      </main>
     </Container>
   </body>
 </html>
+
+<style>
+  .skip-to-content {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skip-to-content:focus {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    clip: auto;
+    padding: 1rem 2rem;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    z-index: 9999;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    outline: 2px solid var(--color-blue);
+    outline-offset: 4px;
+  }
+
+  main:focus {
+    outline: none;
+  }
+</style>
 
 <style is:global>
   /* Core layout custom properties */
