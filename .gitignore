@@ -10,9 +10,12 @@ lerna-debug.log*
 # Copilot Instructions
 .github/copilot-instructions.md
 
+<<<<<<< HEAD
 # Hint configuration
 .hintrc
 
+=======
+>>>>>>> CD-18-keyboard-navigation-and-focus-management
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
