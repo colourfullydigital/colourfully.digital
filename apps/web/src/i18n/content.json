@@ -1,12 +1,12 @@
 {
   "welcome": {
     "title": {
-      "en": "Crafting Digital Experiences with Bold Creativity",
-      "fr": "Créer des expériences digitales avec audace et créativité"
+      "en": "Fostering Diversity & Equity in STEM",
+      "fr": "Favoriser la diversité et l'équité dans les STEM"
     },
     "subtitle": {
-      "en": "We design and develop stunning websites that stand out with our unique neo-brutalist approach, blending modern functionality with bold, artistic expression.",
-      "fr": "Nous concevons et développons des sites web remarquables qui se démarquent par notre approche néo-brutaliste unique, alliant fonctionnalité moderne et expression artistique audacieuse."
+      "en": "Empowering underrepresented communities through education, mentorship, and resources to build a more inclusive future in technology.",
+      "fr": "Autonomiser les communautés sous-représentées grâce à l'éducation, au mentorat et aux ressources pour construire un avenir plus inclusif dans la technologie."
     }
   },
   "components": {
@@ -33,6 +33,122 @@
     "accent": {
       "en": "Accent",
       "fr": "Accent"
+    },
+    "cards": {
+      "title": {
+        "en": "Card Components",
+        "fr": "Composants Carte"
+      },
+      "default": {
+        "title": {
+          "en": "Default Card",
+          "fr": "Carte par défaut"
+        },
+        "description": {
+          "en": "A neo-brutalist card component with hover effects.",
+          "fr": "Un composant carte néo-brutaliste avec effets au survol."
+        }
+      },
+      "primary": {
+        "title": {
+          "en": "Interactive Primary Card",
+          "fr": "Carte principale interactive"
+        },
+        "description": {
+          "en": "Click or tap to learn more about our services.",
+          "fr": "Cliquez ou tapez pour en savoir plus sur nos services."
+        },
+        "ariaLabel": {
+          "en": "Learn more about our services",
+          "fr": "En savoir plus sur nos services"
+        }
+      },
+      "secondary": {
+        "title": {
+          "en": "Secondary Card",
+          "fr": "Carte secondaire"
+        },
+        "description": {
+          "en": "Great for highlighting important content.",
+          "fr": "Parfait pour mettre en évidence un contenu important."
+        }
+      },
+      "accent": {
+        "title": {
+          "en": "Accent Card",
+          "fr": "Carte d'accent"
+        },
+        "description": {
+          "en": "Perfect for calls to action and important notices.",
+          "fr": "Idéal pour les appels à l'action et les notifications importantes."
+        }
+      }
+    },
+    "colors": {
+      "title": {
+        "en": "Brand Colors",
+        "fr": "Couleurs de marque"
+      },
+      "green": {
+        "en": "Green",
+        "fr": "Vert"
+      },
+      "orange": {
+        "en": "Orange",
+        "fr": "Orange"
+      },
+      "yellow": {
+        "en": "Yellow",
+        "fr": "Jaune"
+      },
+      "blue": {
+        "en": "Blue",
+        "fr": "Bleu"
+      }
+    },
+    "utilities": {
+      "title": {
+        "en": "Tailwind Utilities",
+        "fr": "Utilitaires Tailwind"
+      },
+      "typography": {
+        "title": {
+          "en": "Typography",
+          "fr": "Typographie"
+        },
+        "sizes": {
+          "xs": {
+            "en": "Extra Small (xs)",
+            "fr": "Très petit (xs)"
+          },
+          "sm": {
+            "en": "Small (sm)",
+            "fr": "Petit (sm)"
+          },
+          "base": {
+            "en": "Base",
+            "fr": "Base"
+          },
+          "lg": {
+            "en": "Large (lg)",
+            "fr": "Grand (lg)"
+          },
+          "xl": {
+            "en": "Extra Large (xl)",
+            "fr": "Très grand (xl)"
+          },
+          "2xl": {
+            "en": "2XL",
+            "fr": "2XL"
+          }
+        }
+      },
+      "spacing": {
+        "title": {
+          "en": "Spacing",
+          "fr": "Espacement"
+        }
+      }
     }
   }
 }

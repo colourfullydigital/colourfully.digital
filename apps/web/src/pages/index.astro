@@ -3,20 +3,26 @@ export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Card from '../components/Card.astro';
+import { createTranslator } from '../i18n';
+import content from '../i18n/content.json';
+import nav from '../i18n/nav.json';
+
+const locale = 'en';
+const t = createTranslator({ ...content, ...nav }, locale);
 const redirectTo = '/en/';
 return Astro.redirect(redirectTo, 302);
 ---
 
-<Layout title="Welcome to Colourfully Digital">
+<Layout title={t('welcome.title')}>
   <Hero
-    title="Crafting Digital Experiences with Bold Creativity"
-    subtitle="We design and develop stunning websites that stand out with our unique neo-brutalist approach, blending modern functionality with bold, artistic expression."
+    title={t('welcome.title')}
+    subtitle={t('welcome.subtitle')}
     primaryCTA={{
-      text: "Start Your Project",
+      text: t('nav.startProject'),
       href: "/contact"
     }}
     secondaryCTA={{
-      text: "View Our Work",
+      text: t('nav.viewWork'),
       href: "/portfolio"
     }}
   />

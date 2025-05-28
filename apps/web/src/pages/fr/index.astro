@@ -10,7 +10,7 @@ const locale = 'fr';
 const t = createTranslator({ ...content, ...nav }, locale);
 ---
 
-<Layout title="Bienvenue sur Colourfully Digital">
+<Layout title={t('welcome.title')}>
   <Hero
     title={t('welcome.title')}
     subtitle={t('welcome.subtitle')}
@@ -40,54 +40,54 @@ const t = createTranslator({ ...content, ...nav }, locale);
 
       <!-- Card Components -->
       <div class="space-y-6">
-        <h3 class="text-xl font-bold mb-3">Composants de carte</h3>
+        <h3 class="text-xl font-bold mb-3">{t('components.cards.title')}</h3>
         <Card>
-          <h4 class="font-bold mb-2">Carte par défaut</h4>
-          <p>Un composant de carte néo-brutaliste avec effets au survol.</p>
+          <h4 class="font-bold mb-2">{t('components.cards.default.title')}</h4>
+          <p>{t('components.cards.default.description')}</p>
         </Card>
         
-        <Card variant="primary" interactive href="#" ariaLabel="En savoir plus sur nos services">
-          <h4 class="font-bold mb-2">Carte primaire interactive</h4>
-          <p>Cliquez ou tapez pour en savoir plus sur nos services.</p>
+        <Card variant="primary" interactive href="#" ariaLabel={t('components.cards.primary.ariaLabel')}>
+          <h4 class="font-bold mb-2">{t('components.cards.primary.title')}</h4>
+          <p>{t('components.cards.primary.description')}</p>
         </Card>
         
         <Card variant="secondary">
-          <h4 class="font-bold mb-2">Carte secondaire</h4>
-          <p>Parfait pour mettre en évidence un contenu important.</p>
+          <h4 class="font-bold mb-2">{t('components.cards.secondary.title')}</h4>
+          <p>{t('components.cards.secondary.description')}</p>
         </Card>
         
         <Card variant="accent" interactive>
-          <h4 class="font-bold mb-2">Carte d'accent</h4>
-          <p>Idéal pour les appels à l'action et les notifications importantes.</p>
+          <h4 class="font-bold mb-2">{t('components.cards.accent.title')}</h4>
+          <p>{t('components.cards.accent.description')}</p>
         </Card>
       </div>
     </div>
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-bold mb-4">Couleurs de marque</h2>
+    <h2 class="text-2xl font-bold mb-4">{t('components.colors.title')}</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="p-6 bg-brand-green border-brutalist rounded-brutalist-md shadow-brutalist-sm">Vert</div>
-      <div class="p-6 bg-brand-orange border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Orange</div>
-      <div class="p-6 bg-brand-yellow border-brutalist rounded-brutalist-md shadow-brutalist-sm">Jaune</div>
-      <div class="p-6 bg-brand-blue border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">Bleu</div>
+      <div class="p-6 bg-brand-green border-brutalist rounded-brutalist-md shadow-brutalist-sm">{t('components.colors.green')}</div>
+      <div class="p-6 bg-brand-orange border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">{t('components.colors.orange')}</div>
+      <div class="p-6 bg-brand-yellow border-brutalist rounded-brutalist-md shadow-brutalist-sm">{t('components.colors.yellow')}</div>
+      <div class="p-6 bg-brand-blue border-brutalist rounded-brutalist-md shadow-brutalist-sm text-white">{t('components.colors.blue')}</div>
     </div>
   </section>
 
   <section>
-    <h2 class="text-2xl font-bold mb-4">Utilitaires Tailwind</h2>
+    <h2 class="text-2xl font-bold mb-4">{t('components.utilities.title')}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="p-6 bg-gray-100 rounded-md">
-        <h3 class="text-xl font-bold mb-3">Typographie</h3>
-        <p class="text-xs mb-1">Très petit (xs)</p>
-        <p class="text-sm mb-1">Petit (sm)</p>
-        <p class="text-base mb-1">Base</p>
-        <p class="text-lg mb-1">Grand (lg)</p>
-        <p class="text-xl mb-1">Très grand (xl)</p>
-        <p class="text-2xl mb-1">2XL</p>
+        <h3 class="text-xl font-bold mb-3">{t('components.utilities.typography.title')}</h3>
+        <p class="text-xs mb-1">{t('components.utilities.typography.sizes.xs')}</p>
+        <p class="text-sm mb-1">{t('components.utilities.typography.sizes.sm')}</p>
+        <p class="text-base mb-1">{t('components.utilities.typography.sizes.base')}</p>
+        <p class="text-lg mb-1">{t('components.utilities.typography.sizes.lg')}</p>
+        <p class="text-xl mb-1">{t('components.utilities.typography.sizes.xl')}</p>
+        <p class="text-2xl mb-1">{t('components.utilities.typography.sizes.2xl')}</p>
       </div>
       <div class="p-6 bg-gray-100 rounded-md">
-        <h3 class="text-xl font-bold mb-3">Espacement</h3>
+        <h3 class="text-xl font-bold mb-3">{t('components.utilities.spacing.title')}</h3>
         <div class="flex gap-2 flex-wrap">
           <div class="p-1 bg-brand-blue-light border">p-1</div>
           <div class="p-2 bg-brand-blue-light border">p-2</div>
