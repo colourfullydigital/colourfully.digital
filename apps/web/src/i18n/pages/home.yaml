@@ -1,19 +1,19 @@
 # Homepage content translations
 welcome:
   title:
-    en: "Crafting Digital Experiences with Bold Creativity"
-    fr: "Créer des expériences digitales avec audace et créativité"
+    en: "Fostering Diversity & Equity in STEM"
+    fr: "Favoriser la diversité et l'équité dans les STEM"
   subtitle:
-    en: "We design and develop stunning websites that stand out with our unique neo-brutalist approach, blending modern functionality with bold, artistic expression."
-    fr: "Nous concevons et développons des sites web remarquables qui se démarquent par notre approche néo-brutaliste unique, alliant fonctionnalité moderne et expression artistique audacieuse."
-  
+    en: "Empowering underrepresented communities through education, mentorship, and resources to build a more inclusive future in technology"
+    fr: "Autonomiser les communautés sous-représentées grâce à l'éducation, au mentorat et aux ressources pour construire un avenir plus inclusif dans la technologie."
+
 cta:
   start_project:
-    en: "Start Your Project"
-    fr: "Démarrer votre projet"
+    en: "Get involved"
+    fr: "Devenez bénévole"
   view_work:
-    en: "View Our Work"
-    fr: "Voir nos réalisations"
+    en: "Learn more about our programs"
+    fr: "Explorez nos programmes"
   
 services:
   count:

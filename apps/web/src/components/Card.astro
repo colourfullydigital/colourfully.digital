@@ -42,13 +42,20 @@ const baseClasses = `
   duration-[var(--animation-fast)]
   ease-[var(--ease-out)]
   overflow-hidden
+  touch-action-manipulation
 `;
 
 const interactiveClasses = interactive || href ? `
   cursor-pointer
-  hover:transform
-  hover:-translate-y-2
-  hover:shadow-brutalist-md
+  @media(hover: hover) {
+    hover:transform
+    hover:-translate-y-2
+    hover:shadow-brutalist-md
+  }
+  @media(hover: none) {
+    active:transform
+    active:scale-98
+  }
   focus:outline-none
   focus-visible:ring-4
   focus-visible:ring-brand-blue

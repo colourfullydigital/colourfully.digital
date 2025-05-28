@@ -244,6 +244,122 @@ We respect user preferences for reduced motion:
 }
 ```
 
+## Touch Interactions
+
+Our components are designed to work seamlessly across both mouse and touch interfaces. We follow these core principles for touch interactions:
+
+### Touch Target Sizing
+
+All interactive elements follow these minimum sizes for touch targets:
+
+```css
+:root {
+  --touch-target-size: 44px;     /* Minimum touch target size */
+  --touch-target-spacing: 8px;    /* Minimum spacing between targets */
+  --touch-padding-base: 12px;     /* Base padding for touch targets */
+}
+```
+
+### Touch-specific Behaviors
+
+1. **Hover Alternatives**
+   - Hover effects are disabled on touch devices
+   - Active state feedback is provided through scale transforms
+   - Touch feedback is immediate and distinct
+
+```css
+@media (hover: none) {
+  .interactive-element:active {
+    transform: scale(0.98);
+  }
+}
+```
+
+2. **Touch Optimizations**
+   - Use of `touch-action: manipulation` for improved touch response
+   - Removal of hover-dependent interactions
+   - Clear visual feedback for touch actions
+
+```css
+.touch-optimized {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+```
+
+3. **Dropdown Menus**
+   - Click/tap to open instead of hover
+   - Larger touch targets in dropdown items
+   - Clear visual indication of dropdown state
+
+### Implementation Guide
+
+1. **Base Touch Support**
+   ```css
+   /* Add to interactive elements */
+   .interactive-element {
+     min-height: var(--touch-target-size);
+     min-width: var(--touch-target-size);
+     padding: var(--touch-padding-base);
+     touch-action: manipulation;
+   }
+   ```
+
+2. **Touch Feedback**
+   ```css
+   /* Active state feedback */
+   .interactive-element:active {
+     transform: scale(0.98);
+   }
+   ```
+
+3. **Media Queries**
+   ```css
+   /* Touch-specific styles */
+   @media (hover: none) and (pointer: coarse) {
+     /* Touch-specific rules */
+   }
+
+   /* Non-touch devices */
+   @media (hover: hover) {
+     /* Hover-specific rules */
+   }
+   ```
+
+### Accessibility Considerations
+
+1. **ARIA Roles and States**
+   - Use appropriate ARIA roles for touch interactions
+   - Maintain proper focus management
+   - Ensure keyboard accessibility is preserved
+
+2. **Feedback Mechanisms**
+   - Provide visual feedback for touch interactions
+   - Ensure state changes are communicated to screen readers
+   - Maintain proper contrast for touch feedback
+
+3. **Motion and Animation**
+   - Respect reduce-motion preferences
+   - Keep animations subtle and purposeful
+   - Ensure transitions don't interfere with touch interaction
+
+### Testing Guidelines
+
+1. **Device Testing**
+   - Test on various touch devices (phones, tablets)
+   - Verify touch target sizes are adequate
+   - Check for proper touch feedback
+
+2. **Gesture Support**
+   - Verify tap gestures work as expected
+   - Test scroll and swipe interactions
+   - Ensure pinch-to-zoom works where appropriate
+
+3. **Performance**
+   - Monitor touch response time
+   - Verify smooth animations
+   - Check for any lag in feedback
+
 ## Components
 
 ### Buttons
@@ -383,4 +499,3 @@ export default {
 4. **CSS Layers**: Component styles are defined in `@layer components`
 
 For a complete guide on our Tailwind v4 implementation, refer to the project documentation.
-```

@@ -33,26 +33,51 @@ interface Props {
   }
 
   .lang-btn {
-    padding: 0.25rem;
+    padding: var(--touch-padding-base);
+    min-height: var(--touch-target-size);
+    min-width: var(--touch-target-size);
     cursor: pointer;
     border: none;
     background: none;
     color: inherit;
     opacity: 0.7;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, transform 0.2s;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .lang-btn[data-active="true"] {
     opacity: 1;
     text-decoration: underline;
+    pointer-events: none;
   }
 
-  .lang-btn:hover {
-    opacity: 1;
+  /* Hover styles for non-touch devices */
+  @media (hover: hover) {
+    .lang-btn:hover {
+      opacity: 1;
+    }
+  }
+
+  /* Touch-specific styles */
+  @media (hover: none) {
+    .lang-btn:active {
+      transform: scale(0.95);
+      opacity: 1;
+    }
+    
+    /* Increase spacing for touch targets */
+    .language-switcher {
+      gap: var(--touch-target-spacing);
+    }
   }
 
   .separator {
     opacity: 0.5;
+    padding: 0 var(--touch-target-spacing);
   }
 </style>
 

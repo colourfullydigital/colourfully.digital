@@ -122,6 +122,24 @@
   --color-high-contrast-link-visited: #551A8B;
   --color-high-contrast-button: #000000;
   --color-high-contrast-button-text: #FFFFFF;
+  
+  /* Touch interaction */
+  @media (hover: none) and (pointer: coarse) {
+    button,
+    [role="button"],
+    a {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 12px;
+    }
+    
+    /* Add gap between touch targets */
+    button + button,
+    [role="button"] + [role="button"],
+    a + a {
+      margin-left: 8px;
+    }
+  }
 }
 
 /* Dark Mode */
@@ -249,6 +267,35 @@ body {
 
 main {
   flex-grow: 1;
+}
+
+/* Touch-specific media query for interactive elements */
+@media (hover: none) and (pointer: coarse) {
+  /* Enable touch-action on interactive elements */
+  .card[interactive],
+  .nav-button,
+  .nav-link,
+  .lang-btn,
+  .button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Active states for touch devices */
+  .card[interactive]:active,
+  .nav-button:active,
+  .nav-link:active,
+  .lang-btn:active,
+  .button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Remove hover-specific animations on touch devices */
+  .card:hover,
+  .nav-button:hover,
+  .nav-link:hover {
+    transform: none;
+  }
 }
 
 /* Component Styles */
