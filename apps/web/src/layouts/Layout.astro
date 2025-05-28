@@ -91,7 +91,6 @@ const structuredData = generateStructuredData({
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="min-h-screen bg-[#ffffff] text-[#111827]">
-<<<<<<< HEAD
     <a href="#main-content" class="skip-to-content" aria-label={t('nav.skipToContent')}>
       {t('nav.skipToContent')}
     </a>
@@ -110,16 +109,6 @@ const structuredData = generateStructuredData({
           </nav>
         </div>
       </footer>
-=======
-    <a href="#main-content" class="skip-to-content">
-      {t('nav.skipToContent')}
-    </a>
-    <Navigation items={navigationItems} />
-    <Container>
-      <main id="main-content" tabindex="-1">
-        <slot />
-      </main>
->>>>>>> CD-18-keyboard-navigation-and-focus-management
     </Container>
   </body>
 </html>

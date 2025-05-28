@@ -1,10 +1,7 @@
 ---
 import LanguageSwitcher from '../LanguageSwitcher.astro';
-<<<<<<< HEAD
 import { createTranslator } from '../../i18n';
 import nav from '../../i18n/nav.json';
-=======
->>>>>>> CD-18-keyboard-navigation-and-focus-management
 
 interface Props {
   items: {
@@ -23,17 +20,10 @@ const t = createTranslator(nav, currentLocale);
 <nav class="nav-container" aria-label={t('nav.main')}>
   <!-- Desktop Navigation -->
   <div class="nav-desktop">
-<<<<<<< HEAD
     <a href="/" class="logo" aria-label="Colourfully Digital Home">
       <img src="/logo.png" alt="" width="40" height="40" />
     </a>
     <ul class="nav-list" role="menubar" aria-label={t('nav.main')}>
-=======
-    <a href="/" class="logo">
-      <img src="/logo.png" alt="Colourfully Digital" width="40" height="40" />
-    </a>
-    <ul class="nav-list" role="menubar">
->>>>>>> CD-18-keyboard-navigation-and-focus-management
       {
         items.map((item) => {
           const isActive = pathname === item.href;
@@ -54,26 +44,19 @@ const t = createTranslator(nav, currentLocale);
                       class="nav-button" 
                       aria-expanded="false"
                       aria-haspopup="true"
-<<<<<<< HEAD
                       aria-controls={`dropdown-${item.label}`}
                       role="menuitem"
-=======
->>>>>>> CD-18-keyboard-navigation-and-focus-management
                       data-dropdown-trigger
                     >
                       {item.label}
                       <span class="arrow" aria-hidden="true">▾</span>
                     </button>
-<<<<<<< HEAD
                     <ul 
                       id={`dropdown-${item.label}`}
                       class="dropdown" 
                       role="menu" 
                       aria-label={`${item.label} submenu`}
                     >
-=======
-                    <ul class="dropdown" role="menu">
->>>>>>> CD-18-keyboard-navigation-and-focus-management
                       {
                         item.children?.map((child) => (
                           <li role="none">
@@ -84,10 +67,7 @@ const t = createTranslator(nav, currentLocale);
                                 { "is-active": pathname === child.href }
                               ]}
                               role="menuitem"
-<<<<<<< HEAD
                               aria-current={pathname === child.href ? "page" : undefined}
-=======
->>>>>>> CD-18-keyboard-navigation-and-focus-management
                             >
                               {child.label}
                             </a>
@@ -219,7 +199,6 @@ const t = createTranslator(nav, currentLocale);
 </style>
 
 <script>
-<<<<<<< HEAD
   // Enhance keyboard navigation
   document.addEventListener('keydown', (e) => {
     // Close dropdowns and mobile menu on Escape
@@ -259,23 +238,6 @@ const t = createTranslator(nav, currentLocale);
       });
 
       // Toggle current dropdown
-=======
-  // Handle Desktop Dropdowns
-  const dropdownButtons = document.querySelectorAll('.nav-button[aria-haspopup="true"]');
-  
-  dropdownButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isExpanded = button.getAttribute('aria-expanded') === 'true';
-      
-      // Close all other dropdowns first
-      dropdownButtons.forEach(otherButton => {
-        if (otherButton !== button) {
-          otherButton.setAttribute('aria-expanded', 'false');
-        }
-      });
-      
->>>>>>> CD-18-keyboard-navigation-and-focus-management
       button.setAttribute('aria-expanded', (!isExpanded).toString());
       dropdown?.setAttribute('aria-hidden', isExpanded.toString());
     });
