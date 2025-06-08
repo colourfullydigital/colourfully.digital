@@ -49,7 +49,11 @@ const t = createTranslator(nav, currentLocale);
                       data-dropdown-trigger
                     >
                       {item.label}
-                      <span class="arrow" aria-hidden="true">▾</span>
+                      <span class="arrow" aria-hidden="true">
+                        <svg width="12" height="6" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
                     </button>
                     <ul 
                       id={`dropdown-${item.label}`}
@@ -102,19 +106,24 @@ const t = createTranslator(nav, currentLocale);
 
   <!-- Mobile Navigation -->
   <div class="nav-mobile">
-    <div class="nav-lang-switcher-mobile">
-      <LanguageSwitcher />
+    <div class="nav-mobile-header">
+      <a href="/" class="logo-mobile" aria-label="Colourfully Digital Home">
+        <img src="/logo.png" alt="" width="36" height="36" />
+      </a>
+      <button 
+        class="hamburger"
+        aria-label={t('nav.menuButton')}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-hamburger
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 6H21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 12H21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 18H21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>
-    <button 
-      class="hamburger"
-      aria-label={t('nav.menuButton')}
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </button>
 
     <div 
       class="mobile-menu" 
@@ -124,10 +133,10 @@ const t = createTranslator(nav, currentLocale);
       aria-modal="true"
       aria-hidden="true"
     >
-      <nav>
+      <nav class="mobile-nav">
         <ul class="mobile-nav-list" role="menu">
           {items.map(item => (
-            <li role="none">
+            <li class="mobile-nav-item" role="none">
               {item.children ? (
                 <>
                   <button 
@@ -135,32 +144,38 @@ const t = createTranslator(nav, currentLocale);
                     aria-expanded="false"
                     aria-controls={`mobile-dropdown-${item.label}`}
                     role="menuitem"
+                    data-mobile-dropdown-toggle
                   >
-                    {item.label}
-                    <span class="arrow" aria-hidden="true">▾</span>
+                    <span>{item.label}</span>
+                    <span class="mobile-arrow" aria-hidden="true">
+                      <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
                   </button>
-                  <ul 
+                  <div 
                     id={`mobile-dropdown-${item.label}`}
                     class="mobile-dropdown" 
-                    role="menu" 
-                    aria-label={`${item.label} submenu`}
+                    hidden
                   >
-                    {item.children.map(child => (
-                      <li role="none">
-                        <a 
-                          href={child.href}
-                          class:list={[
-                            "mobile-nav-link",
-                            { "is-active": pathname === child.href }
-                          ]}
-                          role="menuitem"
-                          aria-current={pathname === child.href ? "page" : undefined}
-                        >
-                          {child.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                    <ul role="menu" aria-label={`${item.label} submenu`}>
+                      {item.children.map(child => (
+                        <li role="none">
+                          <a 
+                            href={child.href}
+                            class:list={[
+                              "mobile-dropdown-link",
+                              { "is-active": pathname === child.href }
+                            ]}
+                            role="menuitem"
+                            aria-current={pathname === child.href ? "page" : undefined}
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </>
               ) : (
                 <a 
@@ -178,10 +193,12 @@ const t = createTranslator(nav, currentLocale);
             </li>
           ))}
         </ul>
+        <div class="nav-lang-switcher-mobile">
+          <LanguageSwitcher />
+        </div>
       </nav>
     </div>
   </div>
-</nav>
 </nav>
 <style>
   .nav-lang-switcher {
@@ -191,10 +208,9 @@ const t = createTranslator(nav, currentLocale);
     color: var(--color-text-primary);
   }
   .nav-lang-switcher-mobile {
-    margin-left: 0;
-    margin-top: var(--space-4);
-    justify-content: flex-end;
+    margin-top: var(--space-8);
     display: flex;
+    justify-content: center;
   }
   .nav-container {
     position: relative;
@@ -202,18 +218,58 @@ const t = createTranslator(nav, currentLocale);
     width: 100%;
     background-color: var(--color-surface);
   }
-
-  .nav-desktop {
+  
+  .nav-mobile-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--space-4);
     border-bottom: var(--border-width-thick) solid var(--color-black);
+    background-color: var(--color-surface);
+    position: relative;
+    z-index: 49;
+  }
+  
+  .logo-mobile {
+    display: flex;
+    align-items: center;
   }
 
-  @media (max-width: 767px) {
+  .nav-desktop {
+    padding: var(--space-4);
+    border-bottom: var(--border-width-thick) solid var(--color-black);
+  }
+
+  /* Base configuration for navigation modes */
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .nav-mobile {
+    display: none; /* Hidden by default */
+  }
+  
+  /* Media queries for responsive navigation */
+  @media screen and (max-width: 767px) {
     .nav-desktop {
-      display: none;
+      display: none !important; /* Force hide on mobile */
+    }
+    
+    .nav-mobile {
+      display: block !important; /* Force show on mobile */
+    }
+  }
+  
+  /* Make sure we're not showing mobile nav on larger screens */
+  @media screen and (min-width: 768px) {
+    .nav-desktop {
+      display: flex !important; /* Force show on desktop */
+    }
+    
+    .nav-mobile {
+      display: none !important; /* Force hide on desktop */
     }
   }
 
@@ -395,11 +451,9 @@ const t = createTranslator(nav, currentLocale);
       transform: scale(0.98);
     }
 
-    /* Make dropdown trigger more prominent on touch */
-    .nav-button[aria-haspopup="true"]::after {
-      content: "▾";
+    /* Remove duplicate dropdown arrow for touch devices */
+    .nav-button .arrow {
       margin-left: var(--space-2);
-      font-size: 1.2em;
     }
 
     /* Show dropdowns on click instead of hover for touch devices */
@@ -426,126 +480,126 @@ const t = createTranslator(nav, currentLocale);
   }
 
   /* Mobile Navigation Styles */
-  .nav-mobile {
-    display: block;
-    padding: var(--space-4);
-  }
-
   .hamburger {
     position: relative;
-    padding: var(--space-2);
+    padding: var(--space-3);
     border: var(--border-width-thick) solid var(--color-black);
     border-radius: var(--radius-md);
-    background-color: var(--color-surface);
+    background-color: var(--color-black); /* Dark background for white icon */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .hamburger:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .hamburger:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
   }
 
-  .hamburger-box {
-    position: relative;
-    display: inline-block;
-    width: 24px;
-    height: 20px;
+  /* SVG-based hamburger icon - no longer need the inner/before/after elements */
+  .hamburger svg path {
+    transition: transform var(--animation-fast) var(--ease-out), 
+               opacity var(--animation-fast) var(--ease-out);
   }
 
-  .hamburger-inner {
-    position: absolute;
-    width: 24px;
-    height: 3px;
-    background-color: var(--color-black);
+  /* Animation for hamburger to X */
+  .hamburger[aria-expanded="true"] svg path:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .hamburger[aria-expanded="true"] svg path:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger[aria-expanded="true"] svg path:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Mobile menu uses the animated hamburger button for closing */
+  
+  .nav-lang-switcher-mobile {
+    margin-top: auto;
+    padding-top: var(--space-6);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .nav-link.is-active,
+  .dropdown-item.is-active {
+    background-color: var(--color-surface-variant);
+    font-weight: var(--font-weight-bold);
+    border-color: var(--color-brand-blue);
+  }
+  
+  .mobile-nav-link.is-active,
+  .mobile-dropdown-link.is-active {
+    background-color: var(--color-surface-variant);
+    font-weight: var(--font-weight-bold);
+    border-left: 3px solid var(--color-brand-blue);
+  }
+  
+  /* Reduced motion considerations */
+
+  /* Additional global styles */
+  :global(body.menu-open) {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  .arrow {
+    display: inline-flex;
+    margin-left: var(--space-2);
     transition: transform var(--animation-fast) var(--ease-out);
   }
 
-  .hamburger-inner::before,
-  .hamburger-inner::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 3px;
-    background-color: var(--color-black);
-    transition: transform var(--animation-fast) var(--ease-out);
+  .nav-button[aria-expanded="true"] .arrow {
+    transform: rotate(180deg);
   }
 
-  .hamburger-inner::before {
-    top: -8px;
-  }
-
-  .hamburger-inner::after {
-    bottom: -8px;
-  }
-
-  .hamburger[aria-expanded="true"] .hamburger-inner {
-    transform: rotate(45deg);
-  }
-
-  .hamburger[aria-expanded="true"] .hamburger-inner::before {
-    transform: rotate(-45deg) translate(5.5px, -5.5px);
-  }
-
-  .hamburger[aria-expanded="true"] .hamburger-inner::after {
-    transform: rotate(-45deg) translate(5.5px, 5.5px);
-  }
-
+  /* Mobile-specific menu styles */
   .mobile-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    padding: var(--space-6);
     background-color: var(--color-surface);
     transform: translateX(-100%);
     transition: transform var(--animation-normal) var(--ease-out);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
   }
 
+  .mobile-menu.is-open,
   .mobile-menu[aria-hidden="false"] {
     transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
   }
 
-  .mobile-nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .mobile-nav-link,
-  .mobile-nav-button {
-    display: block;
-    width: 100%;
+  .mobile-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     padding: var(--space-4);
-    color: var(--color-text-primary);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
     border-bottom: 1px solid var(--color-border);
-  }
-
-  .mobile-dropdown {
-    display: none;
-    padding-left: var(--space-4);
-  }
-
-  .mobile-nav-button[aria-expanded="true"] + .mobile-dropdown {
-    display: block;
-  }
-
-  /* Media Queries */
-  @media (min-width: 768px) {
-    .nav-mobile {
-      display: none;
-    }
-
-    .nav-desktop {
-      display: flex;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .nav-link,
-    .nav-button,
-    .hamburger-inner,
-    .hamburger-inner::before,
-    .hamburger-inner::after,
-    .mobile-menu {
-      transition-duration: 0.01ms !important;
-    }
   }
 </style>
 
@@ -566,59 +620,222 @@ const t = createTranslator(nav, currentLocale);
     }
   });
 
-  // Update dropdown behavior for touch devices
-  function initTouchNavigation() {
+  // Update dropdown behavior for all devices
+  function initDesktopNavigation() {
     const dropdownButtons = document.querySelectorAll('[data-dropdown-trigger]');
     const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
     dropdownButtons.forEach(button => {
-      if (isTouchDevice) {
-        button.addEventListener('touchend', (e) => {
-          e.preventDefault();
-          const isExpanded = button.getAttribute('aria-expanded') === 'true';
-          
-          // Close other dropdowns
-          dropdownButtons.forEach(otherButton => {
-            if (otherButton !== button) {
-              otherButton.setAttribute('aria-expanded', 'false');
-              const otherId = otherButton.getAttribute('aria-controls');
-              if (otherId) {
-                const otherDropdown = document.getElementById(otherId);
-                otherDropdown?.setAttribute('aria-hidden', 'true');
-              }
+      // Function to toggle dropdown
+      function toggleDropdown(e: Event) {
+        e.preventDefault();
+        e.stopPropagation();
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Close other dropdowns
+        dropdownButtons.forEach(otherButton => {
+          if (otherButton !== button) {
+            otherButton.setAttribute('aria-expanded', 'false');
+            const otherId = otherButton.getAttribute('aria-controls');
+            if (otherId) {
+              const otherDropdown = document.getElementById(otherId);
+              otherDropdown?.setAttribute('aria-hidden', 'true');
             }
-          });
+          }
+        });
 
-          // Toggle current dropdown
-          button.setAttribute('aria-expanded', (!isExpanded).toString());
+        // Toggle current dropdown
+        button.setAttribute('aria-expanded', (!isExpanded).toString());
+        const controlId = button.getAttribute('aria-controls');
+        if (controlId) {
+          const dropdown = document.getElementById(controlId);
+          if (dropdown) {
+            dropdown.setAttribute('aria-hidden', isExpanded.toString());
+            
+            // If opening dropdown, focus the first item
+            if (!isExpanded) {
+              const firstItem = dropdown.querySelector('a[role="menuitem"]') as HTMLElement;
+              if (firstItem) setTimeout(() => firstItem.focus(), 100);
+            }
+          }
+        }
+      }
+      
+      // Touch events for touch devices
+      if (isTouchDevice) {
+        button.addEventListener('touchend', toggleDropdown);
+      }
+      
+      // Click event for all devices
+      button.addEventListener('click', toggleDropdown);
+      
+      // Keyboard navigation
+      button.addEventListener('keydown', (e) => {
+        const kbEvent = e as KeyboardEvent;
+        if (kbEvent.key === 'Enter' || kbEvent.key === ' ') {
+          e.preventDefault();
+          toggleDropdown(e);
+        } else if (kbEvent.key === 'Escape') {
+          e.preventDefault();
+          button.setAttribute('aria-expanded', 'false');
           const controlId = button.getAttribute('aria-controls');
           if (controlId) {
             const dropdown = document.getElementById(controlId);
-            dropdown?.setAttribute('aria-hidden', isExpanded.toString());
+            dropdown?.setAttribute('aria-hidden', 'true');
           }
-        });
-      }
+          (button as HTMLElement).focus();
+        }
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      const expandedButtons = document.querySelectorAll('[data-dropdown-trigger][aria-expanded="true"]');
+      
+      expandedButtons.forEach(button => {
+        const controlId = button.getAttribute('aria-controls');
+        const dropdown = controlId ? document.getElementById(controlId) : null;
+        
+        // If click is outside of button and dropdown
+        if (!button.contains(target) && (!dropdown || !dropdown.contains(target))) {
+          button.setAttribute('aria-expanded', 'false');
+          dropdown?.setAttribute('aria-hidden', 'true');
+        }
+      });
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initTouchNavigation);
-
-  // Handle mobile menu
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  hamburger?.addEventListener('click', () => {
-    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', (!isExpanded).toString());
-    mobileMenu?.setAttribute('aria-hidden', isExpanded.toString());
-    document.body.classList.toggle('menu-open');
+  // Initialize mobile navigation
+  function initMobileNavigation() {
+    const hamburger = document.querySelector('[data-hamburger]');
+    const mobileMenu = document.getElementById('mobile-menu');
     
-    // Manage focus
-    if (!isExpanded) {
-      const firstFocusable = mobileMenu?.querySelector('[role="menuitem"]');
-      if (firstFocusable instanceof HTMLElement) {
-        firstFocusable.focus();
+    console.log('Initializing Mobile Navigation:');
+    console.log('Hamburger button:', hamburger);
+    console.log('Mobile menu:', mobileMenu);
+    
+    const mobileDropdownToggles = document.querySelectorAll('[data-mobile-dropdown-toggle]');
+    
+    // Helper to get all focusable elements
+    const getFocusableElements = (element: HTMLElement) => {
+      const elements = element.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      return Array.from(elements) as HTMLElement[];
+    };
+
+    // Open mobile menu
+    function openMobileMenu() {
+      if (!hamburger || !mobileMenu) return;
+      
+      document.body.classList.add('menu-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      mobileMenu.classList.add('is-open');
+      
+      // Focus the first focusable element in the menu
+      const firstFocusable = getFocusableElements(mobileMenu as HTMLElement)[0];
+      if (firstFocusable) {
+        setTimeout(() => firstFocusable.focus(), 100);
       }
     }
+
+    // Close mobile menu
+    function closeMobileMenu() {
+      if (!hamburger || !mobileMenu) return;
+      
+      document.body.classList.remove('menu-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenu.classList.remove('is-open');
+      
+      // Close any open dropdowns
+      mobileDropdownToggles.forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+        const dropdownId = toggle.getAttribute('aria-controls');
+        if (dropdownId) {
+          const dropdown = document.getElementById(dropdownId);
+          dropdown?.setAttribute('hidden', '');
+        }
+      });
+      
+      // Return focus to hamburger
+      if (hamburger instanceof HTMLElement) {
+        hamburger.focus();
+      }
+    }
+
+    // Toggle mobile menu
+    hamburger?.addEventListener('click', () => {
+      console.log('Hamburger clicked');
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        console.log('Closing mobile menu');
+        closeMobileMenu();
+      } else {
+        console.log('Opening mobile menu');
+        openMobileMenu();
+      }
+    });
+
+    // Note: We don't need a separate close button handler as the hamburger button handles both open and close
+
+    // Handle expandable dropdowns in mobile menu
+    mobileDropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', (!isExpanded).toString());
+        
+        const dropdownId = toggle.getAttribute('aria-controls');
+        if (dropdownId) {
+          const dropdown = document.getElementById(dropdownId);
+          if (isExpanded) {
+            dropdown?.setAttribute('hidden', '');
+          } else {
+            dropdown?.removeAttribute('hidden');
+          }
+        }
+      });
+    });
+
+    // Close menu on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu && mobileMenu.getAttribute('aria-hidden') === 'false') {
+        closeMobileMenu();
+      }
+    });
+
+    // Trap focus within mobile menu when open
+    document.addEventListener('keydown', (e) => {
+      if (!mobileMenu || mobileMenu.getAttribute('aria-hidden') === 'true' || e.key !== 'Tab') return;
+      
+      const focusableElements = getFocusableElements(mobileMenu);
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+      
+      // If shift+tab on first element, go to last element
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+      // If tab on last element, circle back to first element
+      else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    });
+
+    // Prevent body scrolling when menu is open
+    document.body.addEventListener('touchmove', (e) => {
+      if (document.body.classList.contains('menu-open')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initDesktopNavigation();
+    initMobileNavigation();
   });
 </script>
