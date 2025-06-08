@@ -98,6 +98,10 @@ web_modules/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# Git management scripts
+move-branches.sh
+delete-old-branches.sh
+
 # Build output
 dist/
 .vercel/
