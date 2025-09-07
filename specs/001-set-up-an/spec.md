@@ -66,6 +66,10 @@ As a website visitor, I want to access a fast, modern website with a compelling 
 5. **Given** a content creator accesses Sanity Studio, **When** they manage content, **Then** they should be able to edit homepage content, create/edit blog posts, and configure forms
 6. **Given** a content creator publishes content in Sanity, **When** the website regenerates, **Then** all changes should appear on the live website
 7. **Given** a visitor accesses the website on mobile, **When** browsing any section, **Then** the site should be fully responsive and performant
+8. **Given** a search engine crawls the website, **When** indexing content, **Then** it should find XML sitemaps, RSS feeds, and structured data markup
+9. **Given** a visitor wants to subscribe to content, **When** they access newsletter signup, **Then** they should be able to provide their email and receive confirmation
+10. **Given** a content creator previews draft content, **When** using preview functionality, **Then** they should see exactly how content will appear when published
+11. **Given** a visitor accesses a non-existent page, **When** a 404 error occurs, **Then** they should see a helpful error page with navigation options
 
 ### Edge Cases
 - What happens when there are no published blog posts on the blog landing page?
@@ -75,6 +79,12 @@ As a website visitor, I want to access a fast, modern website with a compelling 
 - What happens when a form submission fails or times out?
 - How are spam submissions prevented on forms?
 - What occurs if required form fields are missing validation?
+- How does the system handle slow content loading or network issues?
+- What happens when scheduled content publication fails?
+- How are accessibility features maintained during dynamic content updates?
+- What occurs when embedded multimedia content is unavailable?
+- How does the system handle user role changes or permission conflicts?
+- What happens when multiple languages are configured but content is missing translations?
 
 ## Requirements *(mandatory)*
 
@@ -95,17 +105,41 @@ As a website visitor, I want to access a fast, modern website with a compelling 
 - **FR-014**: System MUST handle media assets and optimize images [NEEDS CLARIFICATION: image sizes, formats, and optimization requirements not specified]
 - **FR-015**: System MUST process form submissions and handle data storage or email delivery [NEEDS CLARIFICATION: where should form data be stored or sent?]
 - **FR-016**: System MUST provide spam protection for forms [NEEDS CLARIFICATION: what type of spam protection - CAPTCHA, honeypot, rate limiting?]
+- **FR-017**: System MUST generate XML sitemaps for search engine indexing
+- **FR-018**: System MUST provide RSS/Atom feeds for blog content subscription
+- **FR-019**: System MUST implement structured data (Schema.org) markup for blog posts and pages
+- **FR-023**: System MUST provide proper 404 error pages with navigation back to main content
+- **FR-024**: System MUST show loading states during content fetching and navigation
+- **FR-027**: System MUST provide preview functionality for draft content before publishing
+- **FR-028**: System MUST implement performance optimizations including caching strategies
+- **FR-029**: System MUST meet accessibility standards (WCAG 2.1 AA compliance) [NEEDS CLARIFICATION: specific accessibility requirements?]
+- **FR-030**: System MUST integrate analytics tracking for user behavior and content performance [NEEDS CLARIFICATION: which analytics platform?]
+- **FR-031**: System MUST support content scheduling for future publication dates
+- **FR-032**: System MUST provide user role management in Sanity Studio [NEEDS CLARIFICATION: what user roles are needed - admin, editor, contributor?]
+- **FR-034**: System MUST support newsletter signup functionality with email collection
+- **FR-036**: System MUST support embedding of multimedia content (YouTube, Vimeo, social media posts)
+- **FR-039**: System MUST support multi-language content and internationalization
+- **FR-040**: System MAY provide image gallery components for rich media posts
 
 ### Key Entities *(include if feature involves data)*
 - **Homepage Content**: Represents the main landing page content including hero sections, introductory text, featured content, and navigation elements
-- **Blog Post**: Represents individual articles with title, content, publication date, author, categories, SEO metadata, and publish status
+- **Blog Post**: Represents individual articles with title, content, publication date, author, categories, SEO metadata, structured data markup, and publish status
 - **Blog Landing Page**: Configuration for the blog section including layout, featured posts, category displays, and pagination settings
 - **Form**: Represents interactive forms with field definitions, validation rules, submission handling, and spam protection settings
 - **Form Submission**: Data collected from form interactions including field values, timestamps, and submission metadata
-- **Author**: Content creator information including name, bio, and profile image
+- **Author**: Content creator information including name, bio, profile image, and role/permissions
 - **Category**: Taxonomic grouping for blog posts to enable content organization and filtering
-- **Media Asset**: Images, videos, and other media files associated with any content type
-- **Site Configuration**: Global settings for the website including navigation, branding, SEO defaults, and site-wide configurations
+- **Media Asset**: Images, videos, and other media files associated with any content type, including galleries and embedded multimedia
+- **Site Configuration**: Global settings for the website including navigation, branding, SEO defaults, analytics configuration, and site-wide configurations
+- **SEO Data**: Metadata including titles, descriptions, structured data markup, and social media tags for all content types
+- **RSS Feed**: Syndication feed configuration and content for blog subscription
+- **Sitemap**: XML sitemap structure for search engine indexing
+- **Newsletter Subscription**: Email collection and subscription management for content updates
+- **User Role**: Permission and access level definitions for content creators in Sanity Studio
+- **Scheduled Content**: Content with future publication dates and scheduling metadata
+- **Preview Session**: Temporary content preview configurations for draft content review
+- **Multi-language Content**: Internationalization data including language variants and translation mappings
+- **Error Page**: Custom 404 and error page content and navigation options
 
 ---
 
