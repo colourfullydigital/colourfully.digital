@@ -40,7 +40,8 @@ if [ -d "$SPECS_DIR" ]; then
     for dir in "$SPECS_DIR"/*; do
         if [ -d "$dir" ]; then
             dirname=$(basename "$dir")
-            number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
+            # Handle both old format (001-name) and new format (feature/001-name)
+            number=$(echo "$dirname" | sed 's/^feature\///' | grep -o '^[0-9]\+' || echo "0")
             number=$((10#$number))
             if [ "$number" -gt "$HIGHEST" ]; then
                 HIGHEST=$number
@@ -64,10 +65,11 @@ BRANCH_NAME=$(echo "$FEATURE_DESCRIPTION" | \
 # Extract 2-3 meaningful words
 WORDS=$(echo "$BRANCH_NAME" | tr '-' '\n' | grep -v '^$' | head -3 | tr '\n' '-' | sed 's/-$//')
 
-# Final branch name
-BRANCH_NAME="${FEATURE_NUM}-${WORDS}"
+# Final branch name with Gitflow feature/ prefix
+BRANCH_NAME="feature/${FEATURE_NUM}-${WORDS}"
 
-# Create and switch to new branch
+# Create and switch to new branch from dev (Gitflow convention)
+git checkout dev 2>/dev/null || git checkout main
 git checkout -b "$BRANCH_NAME"
 
 # Create feature directory

@@ -1,6 +1,6 @@
 # Feature Specification: Astro Website/Blog with Sanity.io CMS
 
-**Feature Branch**: `001-set-up-an`  
+**Feature Branch**: `feature/001-astro-sanity-setup`  
 **Created**: September 7, 2025  
 **Status**: Draft  
 **Input**: User description: "set up an Astro website/blog with Sanity.io as the headless CMS"
