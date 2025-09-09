@@ -1,0 +1,26 @@
+{
+  "name": "colourfully.digital",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.js",
+    "format": "prettier --write .",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "astro": "^5.0.0",
+    "eslint": "^9.35.0",
+    "prettier": "^2.8.0",
+    "typescript": "^5.0.0",
+    "vite": "^7.1.5",
+    "vitest": "^3.2.4",
+    "@typescript-eslint/parser": "^6.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.3.0"
+  }
+}
