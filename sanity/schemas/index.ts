@@ -5,6 +5,7 @@ import homepageContent from './homepage-content'
 import form from './form'
 import formSubmission from './form-submission'
 import siteConfiguration from './site-configuration'
+// import translationKeys from './translation-keys'
 
 export const schemas = [
   blogPost,
@@ -14,6 +15,7 @@ export const schemas = [
   form,
   formSubmission,
   siteConfiguration,
+  // translationKeys,
 ]
 
 export default schemas
