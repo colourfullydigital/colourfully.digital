@@ -5,11 +5,20 @@ export default {
   fields: [
     { name: 'form', type: 'reference', to: [{ type: 'form' }], title: 'Form' },
     { name: 'submittedAt', type: 'datetime', title: 'Submitted At' },
-    { name: 'payload', type: 'object', title: 'Payload', fields: [
-      { name: 'name', type: 'string', title: 'Name' },
-      { name: 'email', type: 'string', title: 'Email' },
-      { name: 'message', type: 'text', title: 'Message' },
-    ] },
+    {
+      name: 'payload',
+      type: 'array',
+      title: 'Payload',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'key', type: 'string', title: 'Field Key' },
+            { name: 'value', type: 'string', title: 'Field Value' }
+          ]
+        }
+      ]
+    },
     { name: 'ipAddress', type: 'string', title: 'IP Address' },
   ],
 }

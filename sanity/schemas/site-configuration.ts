@@ -1,3 +1,5 @@
+const LOCALE_OPTIONS = ['en', 'fr'];
+
 export default {
   name: 'siteConfiguration',
   title: 'Site Configuration',
@@ -6,6 +8,6 @@ export default {
     { name: 'siteTitle', type: 'string', title: 'Site Title' },
     { name: 'siteDescription', type: 'text', title: 'Site Description' },
     { name: 'logo', type: 'image', title: 'Logo' },
-    { name: 'defaultLocale', type: 'string', title: 'Default Locale', options: { list: ['en','fr'] } },
+    { name: 'defaultLocale', type: 'string', title: 'Default Locale', options: { list: LOCALE_OPTIONS } },
   ],
 }
